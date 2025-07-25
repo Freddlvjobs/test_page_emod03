@@ -1,0 +1,1772 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>OperatorPanelFR</title>
+
+    <script type="text/javascript" src="./OperatorPanelFR162_files/jquery-2.1.0.js.download"></script>
+
+    <script type="text/javascript" src="./OperatorPanelFR162_files/bootstrap.min.js.download"></script>
+    <link rel="stylesheet" type="text/css" href="./OperatorPanelFR162_files/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./OperatorPanelFR162_files/bootstrap-table.css">
+    <link rel="stylesheet" type="text/css" href="./OperatorPanelFR162_files/bootstrap-datepicker3.min.css">
+    <script type="text/javascript" src="./OperatorPanelFR162_files/bootstrap-table.js.download"></script>
+    <script type="text/javascript" src="./OperatorPanelFR162_files/bootstrap-datepicker.min.js.download"></script>
+    <script type="text/javascript" src="./OperatorPanelFR162_files/axios.0.21.4.min.js.download"></script>
+    <meta name="csrf-token" content="GkKV3EEaGfnsyuCcz3MYoXpkFoLQsJWnaE457iyL">
+            <script type="text/javascript">
+          window.APP_CONFIG = {
+            VAPID_PUBLIC_KEY: "",
+          }
+        </script>
+        <!--script type="module">
+			import PushNotification from '/js/push/index.js?1751483640';
+			PushNotification.init({"id":19921})
+		</script-->
+        
+
+    <style type="text/css">
+        .online-red {
+            color: red;
+        }
+
+        .online-green {
+            color: lightgreen;
+        }
+
+        .container-lg {
+            width: calc(100% - 30px);
+            padding-right: 0;
+            padding-left: 0;
+        }
+
+        @media (max-width: 768px) {
+            #operator_admin_menu li {
+                width: 100%;
+            }
+        }
+
+        /*Make sure that the mobile menu collapses below 1200px */
+        @media (max-width: 1200px) {
+            .navbar-header {
+                float: none;
+            }
+
+            .navbar-left, .navbar-right {
+                float: none !important;
+            }
+
+            .navbar-toggle {
+                display: block;
+            }
+
+            .navbar-collapse {
+                border-top: 1px solid transparent;
+                box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            }
+
+            .navbar-fixed-top {
+                top: 0;
+                border-width: 0 0 1px;
+            }
+
+            .navbar-collapse.collapse {
+                display: none !important;
+            }
+
+            .navbar-nav {
+                float: none !important;
+                margin-top: 7.5px;
+            }
+
+            .navbar-nav > li {
+                float: none;
+            }
+
+            .navbar-nav > li > a {
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+
+            .collapse.in {
+                display: block !important;
+            }
+        }
+
+        .operator-color {
+            display: inline-block;
+            border-radius: 50%;
+            width: 14px;
+            height: 14px;
+            box-sizing: border-box;
+        }
+
+        .operator-color-none {
+            background-color: transparent;
+        }
+
+        .operator-color-yellow {
+            border: 1px solid #F0E68C;
+        }
+
+        .pagination > li > select {
+            position: relative;
+            float: left;
+            padding: 7px 12px;
+            margin-left: -1px;
+            line-height: 1.42857143;
+            color: #428bca;
+            text-decoration: none;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            height: 34px;
+        }
+
+        .badge-warning {
+            color: #fff;
+            background-color: #ffc107;
+        }
+
+        .datepicker table tr th.dow:nth-child(5n+6),
+        .datepicker table tr th.dow:nth-child(5n+7) {
+            color: red;
+        }
+
+        .modal .modal-dialog .modal-content {
+            border-radius: 6px;
+            padding: 0;
+        }
+
+        .modal .modal-dialog .close {
+            color: #ffffff;
+            opacity: 1;
+            text-shadow: 0 1px 0 #000000;
+        }
+
+        .modal .modal-dialog .modal-content .modal-header {
+            padding: 9px 15px;
+            border-bottom: 1px solid #326896;
+            background-color: #428bca;
+            color: #ffffff;
+            -webkit-border-top-left-radius: 6px;
+            -webkit-border-top-right-radius: 6px;
+            -moz-border-radius-topleft: 6px;
+            -moz-border-radius-topright: 6px;
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+        }
+
+        .modal .modal-dialog .modal-content .modal-body {
+            padding-top: 10px;
+        }
+
+        .modal .modal-dialog .modal-content .modal-footer {
+            padding-top: 15px;
+        }
+
+        .modal.modal-alert .modal-dialog .modal-content .modal-header {
+            border-bottom: 1px solid #d9534f;
+            background-color: #d9534f;
+        }
+
+        .modal.modal-success .modal-dialog .modal-content .modal-header {
+            background-color: #449d44;
+        }
+
+        .overflow-hidden {
+            overflow: hidden;
+        }
+
+        .content {
+            min-height: 100vh;
+        }
+
+        .footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            background-color: #222;
+            width: 100%;
+
+        }
+        .footer-content {
+            display: flex;
+            justify-content: center;
+        }
+        .footer-address {
+            font-size: 12px;
+            color: #eaeaef;
+        }
+    </style>
+
+    <script type="text/javascript">
+      if (window.top !== window.self) {
+        window.top.location.href = window.location.href;
+      }
+
+      $(function () {
+        $('.delete-are-you-sure').click(function () {
+          if ($(this).data('message')) {
+            return window.confirm($(this).data('message'));
+          }
+          return window.confirm("Es-tu sûr?");
+        });
+
+        $.ajaxSetup({
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+        });
+      })
+    </script>
+    <style id="mcmhjak5.bj">
+        #image-blur-controls { position: fixed; z-index: 9999; user-select: none; }
+        #image-blur-toggle { background-color: #000; color: #fff; border: 1px solid #fff; border-radius: 50%; width: 50px; height: 50px; font-size: 24px; cursor: move; opacity: 0.7; transition: opacity 0.3s, border-radius 0.3s; position: relative; z-index: 2; }
+        #image-blur-controls:hover #image-blur-toggle { opacity: 1; border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
+        #image-blur-controls.dragging #image-blur-toggle { cursor: grabbing; }
+        #blur-settings-container { position: absolute; top: 48px; left: 50%; transform: translateX(-50%); z-index: 1; background-color: #000; padding: 15px 10px 10px 10px; border: 1px solid #fff; border-top: none; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; display: none; flex-direction: column; gap: 8px; max-height: 200px; overflow-y: auto; }
+        #image-blur-controls:hover #blur-settings-container { display: flex; }
+        #blur-style-selector { background-color: #333; color: white; border: 1px solid #777; border-radius: 4px; padding: 2px; width: 100%; }
+        #blur-slider { -webkit-appearance: none; appearance: none; width: 120px; height: 8px; background: #555; border-radius: 5px; outline: none; }
+        #blur-slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 18px; height: 18px; background: #fff; cursor: pointer; border-radius: 50%; }
+
+        /* --- Logique des filtres --- */
+        body.blur-images-active.style-blur img { filter: blur(var(--image-blur-amount, 8px)); }
+        body.blur-images-active.style-pixelate img { filter: url(#pixelate-filter); }
+        body.blur-images-active.style-oilpaint img { filter: url(#oil-paint-filter); }
+        body.blur-images-active.style-halftone img { filter: url(#halftone-filter); }
+        body.blur-images-active.style-posterize img { filter: url(#posterize-filter); }
+        body.blur-images-active.style-sketch img { filter: url(#pencil-sketch-filter); }
+        body.blur-images-active.style-oldphoto img { filter: url(#old-photo-filter); }
+        body.blur-images-active.style-watercolor img { filter: url(#watercolor-filter); }
+        body.blur-images-active.style-charcoal img { filter: url(#charcoal-filter); }
+        body.blur-images-active.style-edge img { filter: url(#edge-detection-filter) invert(1); }
+        body.blur-images-active.style-engraving img { filter: url(#engraving-filter); }
+        body.blur-images-active.style-blackout img { filter: brightness(0); }
+        body.blur-images-active.style-sepia img { filter: sepia(var(--image-intensity, 1)); }
+        body.blur-images-active.style-grayscale img { filter: grayscale(var(--image-intensity, 1)); }
+        body.blur-images-active.style-invert img { filter: invert(var(--image-intensity, 1)); }
+
+        body.blur-images-active img { transition: filter 0.1s ease; }
+        body.blur-images-active img:hover,
+        body.blur-images-active img.unblurred-by-click { filter: none; }
+    </style><style id="mcmci69f.hh">
+    .draggable{position:fixed;z-index:9999;background-color:#fff;border:1px solid #ccc;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:Arial,sans-serif;}.drag-handle{cursor:move;}#my-timer-container{bottom:20px;right:20px;padding:15px;text-align:center;width:220px;transition:padding 0.2s ease, width 0.2s ease;}#my-timer-display{font-size:2.5em;font-weight:bold;color:#333;margin-bottom:10px;font-family:'Courier New',Courier,monospace;padding:5px;border-radius:5px;}#my-timer-display:hover{background-color:#f0f0f0;}#my-timer-controls{display:flex;gap:10px;justify-content:center;}#my-timer-controls button{flex:1;padding:8px 0;border:1px solid #ccc;border-radius:5px;cursor:pointer;background-color:#f0f0f0;font-size:1.2em;transition:background-color 0.2s, opacity 0.2s, visibility 0.2s;}#my-timer-controls button:hover{background-color:#e0e0e0;}#my-timer-controls button:disabled{cursor:not-allowed;opacity:0.5;}
+    #toggle-view-btn { flex: 0 1 40px; }
+
+    /* AJOUT : Styles pour la vue minimale */
+    #my-timer-container.minimal-view {
+        padding: 5px 10px;
+        width: auto; /* Laisser la largeur s'adapter au contenu */
+    }
+    #my-timer-container.minimal-view #my-timer-display {
+        margin-bottom: 0;
+    }
+    #my-timer-container.minimal-view #my-timer-controls {
+        display: block; /* On change le flex pour un simple block */
+        position: absolute; /* Positionnement absolu par rapport au conteneur */
+        top: 0;
+        right: -30px; /* On le sort un peu pour qu'il soit à côté */
+        height: 100%;
+    }
+    #my-timer-container.minimal-view #my-timer-controls #toggle-view-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        width: 25px;
+        background: #e0e0e0;
+        border-radius: 0 5px 5px 0;
+        border-left: none;
+        opacity: 0.2; /* Le rendre discret */
+        transition: opacity 0.2s;
+    }
+    #my-timer-container.minimal-view:hover #my-timer-controls #toggle-view-btn {
+        opacity: 1; /* Le rendre visible au survol */
+    }
+    #my-timer-container.minimal-view #my-timer-controls button:not(#toggle-view-btn) {
+        display: none; /* Cache tous les boutons sauf le bouton de bascule */
+    }
+
+    #my-settings-panel{bottom:150px;right:20px;width:680px;}
+    .panel-header{padding:10px 15px;border-bottom:1px solid #ddd;background-color:#f7f7f7;border-top-left-radius:8px;border-top-right-radius:8px;}.panel-header h3{margin:0;font-size:1.1em;}.panel-content{padding:15px;}.setting-row{display:flex;align-items:center;gap:8px;margin-bottom:10px;}.setting-row label{flex-basis:200px;text-align:right;font-size:0.9em;}#my-settings-panel input,#my-settings-panel select{padding:6px;border:1px solid #ccc;border-radius:4px;}.settings-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:15px;}#apply-settings-btn{background-color:#d4edda;border-color:#c3e6cb;}#cancel-settings-btn{background-color:#f8d7da;border-color:#f5c6cb;}#my-template-modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:10001;display:flex;justify-content:center;align-items:center;}.modal-content{display:flex;flex-direction:column;background:#fff;padding:0;border-radius:8px;width:90%;max-width:600px;height:80vh;position:relative;}.modal-content h4{padding:15px 20px;margin:0;border-bottom:1px solid #ddd;}.modal-close-btn{position:absolute;top:10px;right:15px;font-size:2em;cursor:pointer;color:#888;}#template-tabs{display:flex;flex-wrap:wrap;padding:10px 10px 0 10px;border-bottom:1px solid #ccc;}.tab-link{background:#f1f1f1;border:1px solid #ccc;border-bottom:none;padding:10px 15px;cursor:pointer;border-radius:5px 5px 0 0;margin-right:5px;position:relative;}.tab-link.active{background:#fff;border-bottom:1px solid #fff;}#add-category-btn{background:#d4edda;border:1px solid #c3e6cb;padding:10px 15px;border-radius:5px;margin-left:auto;}#template-panels{flex-grow:1;overflow-y:auto;padding:20px;}.tab-panel{display:none;}.tab-panel.active{display:block;}.template-list{list-style:none;padding:0;margin:0;}.template-list li{display:flex;justify-content:space-between;align-items:center;padding:10px;border-bottom:1px solid #eee;cursor:pointer;}.template-list li:hover{background-color:#f0f0f0;}.delete-category-btn,.delete-template-btn{color:#f00;font-weight:bold;cursor:pointer;padding:0 5px;margin-left:10px;}.add-template-div{display:flex;margin-top:20px;}.add-template-input{flex-grow:1;padding:8px;border:1px solid #ccc;}.add-template-btn{padding:8px 12px;background:#d4edda;border:1px solid #c3e6cb;}
+    .alert-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; padding: 4px; border: 1px solid transparent; border-radius: 4px; }
+    .alert-row.dragging { opacity: 0.5; background: #f0f8ff; border-color: #cce5ff; }
+    .alert-col-drag { flex-shrink: 0; cursor: grab; color: #aaa; padding: 0 5px; } .alert-col-drag:active { cursor: grabbing; }
+    .alert-col-time { display: flex; gap: 5px; } .alert-col-msg { flex-grow: 1; display: flex; } .alert-col-style, .alert-col-del { flex-shrink: 0; } .alert-time { width: 60px; } .alert-unit { width: 65px; } .alert-message { flex-grow: 1; } .template-btn { border-top-left-radius: 0; border-bottom-left-radius: 0; border-left: none; } .alert-message { border-top-right-radius: 0; border-bottom-right-radius: 0; } .alert-style { width: 150px; } .delete-alert-btn { width: 32px; height: 32px; background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; border-radius: 5px; }
+    #program-management { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+    #program-management label { flex-shrink: 0; }
+    #program-select { flex-grow: 1; }
+    #program-management button { padding: 6px 10px; font-size: 1.1em; }
+    #alerts-list { max-height: 220px; overflow-y: auto; padding: 10px; margin: 10px 0; border: 1px solid #e0e0e0; border-radius: 4px; background-color: #f9f9f9; }
+    .timer-alert-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 10002; display: flex; justify-content: center; align-items: center; background-color: rgba(0,0,0,0.5); }
+    .timer-alert-box { background-color: white; padding: 40px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); font-size: 2em; text-align: center; z-index: 10003; }
+    .screen-shake-animation { animation: shake 0.8s cubic-bezier(.36,.07,.19,.97) both; }
+    @keyframes shake { 10%, 90% { transform: translate3d(-1px, 0, 0); } 20%, 80% { transform: translate3d(2px, 0, 0); } 30%, 50%, 70% { transform: translate3d(-4px, 0, 0); } 40%, 60% { transform: translate3d(4px, 0, 0); } }
+    </style><script src="chrome-extension://ddbjnfjiigjmcpcpkmhogomapikjbjdk/base.js"></script></head>
+<body class="blur-images-active style-posterize vsc-initialized" style="zoom: 1.2;">
+
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://frmoderation.com/messages#" style="padding-top:0; padding-bottom:0;">
+                <img src="./OperatorPanelFR162_files/8.png" alt="">
+            </a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="https://frmoderation.com/">Accueil</a>
+                </li>
+                                    <li class="active">
+                        <a href="https://frmoderation.com/messages">Messages</a>
+                    </li>
+                                                                
+                
+                
+                                    <li>
+                        <a href="https://frmoderation.com/stats">Stats</a>
+                    </li>
+                
+                <li>
+                    <a href="https://frmoderation.com/logout">Quitter</a>
+                </li>
+
+                
+                <!--li>
+						<a href="https://frmoderation.com/notifications">Notifications                                </a>
+            </li-->
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="https://frmoderation.com/wall">
+                        <span style="color: white;margin-right: 20px;font-weight: bold; font-size: larger;">30,76 €</span><span class="glyphicon glyphicon-user"></span> Frederic D
+                        (19921
+                        )
+
+                        
+                        <div style="position:absolute; top:15px; right:-46px; color:white; padding-top:15px; font-size:10px; width:100px;">21:14:00</div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+
+    </div>
+    <!-- /.container -->
+</nav>
+
+<!-- Page Content -->
+<div class="content container" style="margin-top:70px">
+
+    
+    
+    
+    <script type="text/javascript">
+      $(function(){
+                    $(document).on('show.bs.modal', '.modal', function (event) {
+            let zIndex = 1040 + (10 * $('.modal:visible').length);
+            $(this).css('z-index', zIndex);
+            setTimeout(function() {
+              $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
+            }, 0);
+          });
+      })
+    </script>
+
+    
+<script type="text/javascript">
+$(function(){
+	$('textarea#message').focus();
+
+
+})
+</script>
+
+<style type="text/css">
+#accordion1 h4:after,
+#accordion2 h4:after,
+#accordion3 h4:after,
+#accordion4 h4:after{
+    font-family:'Glyphicons Halflings';
+    content:"\e114";
+    float: right;
+    color: grey;
+}
+#accordion1 h4.collapsed:after,
+#accordion2 h4.collapsed:after,
+#accordion3 h4.collapsed:after,
+#accordion4 h4.collapsed:after{
+    content:"\e080";
+}
+
+.attachment-pop {
+	cursor: pointer;
+}
+
+#message { height:100px; }
+
+form.has-error #message {
+	background-color: red;
+}
+
+#log_book_status_wrapper {
+	position: relative;
+	cursor: pointer;
+}
+
+#log_book_status_wrapper.check-status {
+	min-height: 30px;
+}
+
+#log_book_text { height:70px; }
+
+/*.log_book_item:not(:last-child) { border-bottom:0; }*/
+
+.log-book-container .panel-body { padding-top:0; padding-bottom:0; }
+.log-book-container .row { border-bottom:1px solid #eee; padding-bottom:10px; padding-top:10px; }
+
+#message_sender textarea { color:black;  }
+
+.loader-container {
+	position: absolute;
+	right: 10px;
+	top: 0;
+}
+.loader {
+	position: relative;
+	height: 20px;
+	width: 20px;
+	display: inline-block;
+	animation: around 5.4s infinite;
+}
+
+@keyframes around {
+	0% {
+		transform: rotate(0deg)
+	}
+	100% {
+		transform: rotate(360deg)
+	}
+}
+
+.loader::after, .loader::before {
+	content: "";
+	background: white;
+	position: absolute;
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	border-width: 2px;
+	border-color: #333 #333 transparent transparent;
+	border-style: solid;
+	border-radius: 20px;
+	box-sizing: border-box;
+	top: 0;
+	left: 0;
+	animation: around 0.7s ease-in-out infinite;
+}
+
+.loader::after {
+	animation: around 0.7s ease-in-out 0.1s infinite;
+	background: transparent;
+}
+
+
+</style>
+
+<script type="text/javascript" src="./OperatorPanelFR162_files/lightbox.min.js.download"></script>
+<link rel="stylesheet" type="text/css" href="./OperatorPanelFR162_files/lightbox.css">
+
+
+<script type="text/javascript">
+$(function(){
+
+		
+	$('textarea#message').keyup(function() {
+		let total = parseInt(140),
+            remaining = total - this.value.length;
+		if (remaining > 0) {
+			$('#message_sender input[type=submit]').attr('disabled', 'disabled');
+			$('.charactercount').html('Faltan <strong>' + remaining + '</strong> caracteres');
+		} else {
+			$('#message_sender input[type=submit]').removeAttr('disabled')
+			$('.charactercount').html('<span class="glyphicon glyphicon-thumbs-up" style="font-size:20px"></span>');
+		}
+	});
+	
+	let timeoutCountDown = 0;
+	(function enableButtonCountDown(button) {
+		const buttonMessage = button.val();
+		let timeoutId = null;
+		timeoutCountDown++;
+
+		$(window).on("blur focus", function (e) {
+			let prevType = $(document.body).data("prevType");
+			if (prevType !== e.type) {   //  reduce double fire issues
+				switch (e.type) {
+					case "blur":
+						clearInterval(timeoutId);
+						timeoutCountDown++;
+						break;
+					case "focus":
+						if (timeoutCountDown) {
+							countDown();
+						}
+						break;
+				}
+			}
+			$(document.body).data("prevType", e.type);
+		});
+
+		function countDown() {
+			if (timeoutId) {
+				clearTimeout(timeoutId);
+			}
+			timeoutCountDown--;
+			if (timeoutCountDown > 0) {
+				button.val(buttonMessage + ' (' + timeoutCountDown + 's)');
+				timeoutId = setTimeout(countDown, 1000);
+			} else {
+				timeoutCountDown = 0;
+				button.val(buttonMessage);
+			}
+		}
+
+		countDown();
+	})($('#message_sender input[type=submit]'));
+
+	$('textarea#message').on('keyup', function(){
+		const form = $(this).closest('form');
+		const regex = /\[\s*and\s*\]|\(\s*and\s*\)/gi;
+		if (regex.test($(this).val())) {
+			form.addClass('has-error');
+		} else {
+			form.removeClass('has-error');
+		}
+	});
+
+	$('#message_sender form').on('submit', function(event) {
+		if (timeoutCountDown > 0) {
+			event.preventDefault();
+			alert('Please wait ' + timeoutCountDown + 's');
+			return false;
+		}
+		if ($(this).hasClass('has-error')) {
+			alert('Combination of ( and ) or [ and ] are not allowed');
+			event.preventDefault();
+			return false;
+		}
+		$('#message_sender input[type=submit]').attr('disabled', 'disabled');
+		return true;
+	})
+
+	$('.attachment_id').click(function(){
+		$('input[name=attachment_id]').val($(this).val());
+	});
+
+	const pastedTexts = [];
+
+	function countWords(str) {
+		let matches = str.match(/[\w\d\’\'-]+/gi);
+		return matches <span style="background-color: yellow;">?</span> matches.length : 0;
+	}
+
+	$("textarea#message").bind("paste", function(e){
+		const text = e.originalEvent.clipboardData.getData('text');
+		if(countWords(text) > 5 && !pastedTexts.includes(text)) {
+			pastedTexts.push(text)
+		}
+	});
+
+	/**
+	 * Send the log of message via ajax request
+	 *
+	 * @returns {Promise<unknown>}
+	 */
+	function sendLog() {
+		return new Promise((resolve) => {
+			$.ajax({
+				type: "POST",
+				contentType: "application/json",
+				url: "https://frmoderation.com/log-messages",
+				data: JSON.stringify({
+					pasted_texts: pastedTexts,
+					changed_text: $("textarea#message").val()
+				}),
+				complete() {
+					resolve()
+				}
+			})
+		})
+	}
+
+
+	$('.log_book_post').submit(function(){
+		var category_id = $(this).find('select#log_book_category_id').val();
+		var text = $(this).find('#log_book_text').val();
+		var type = $(this).data('type');
+		var parent = $(this).parent().parent().parent();
+		let category = $('.logbook_' + category_id, parent).data('name');
+		let count = $('.logbook_' + category_id + ' .row', parent).length;
+		if (count >= 3) {
+			alert('Maximum 3' + ( ' ' + category || ''));
+			this.reset();
+			return false;
+		}
+
+		$.post('https://frmoderation.com/log-books/create', {
+			'conversation_id': $(this).data('conversationId'),
+			'user_id': $(this).data('userId'),
+			'category_id': category_id,
+			'text': text,
+			'type': type,
+						'message_id': 226202384,
+								}, function(data){
+
+			console.log(data);
+			parent.find('.logbook_' +  category_id + ' .panel-body').append('<div class="row"><div class="col-lg-10 log-book-text">' + text + '</div><div class="col-lg-2 delete-log-container"><button class="btn btn-xs btn-danger delete-log" data-id="' + data + '" data-type="' + type + '">X</button></div></div>');
+
+			update_log_book_state();
+		});
+
+		this.reset();
+
+		return false;
+	});
+
+	$(document).on('click', '.delete-log', function(){
+
+		var $this = $(this);
+
+		$.post('https://frmoderation.com/log-books/delete', {
+			'id': $(this).data('id'),
+			'text': $(this).parent().parent().find('.log-book-text').text(),
+			'type': $(this).data('type'),
+						'message_id': 226202384,
+								}, function(data){
+			$this.parent().parent().remove();
+			alert('Effacé');
+
+			update_log_book_state();
+		});
+	});
+
+	let logBookStatusWrapper = $('#log_book_status_wrapper');
+
+	function addLogBookStatusChange(wrapper, profile) {
+		if ('log_books_locked' in profile) {
+			if (profile.log_books_locked) {
+								$('#log_book_fake_wrapper').closest('.panel-body').remove();
+							} else {
+								$('#log_book_fake_wrapper').removeClass('hidden');
+			}
+		}
+	}
+	
+	if (logBookStatusWrapper.hasClass('check-status')) {
+		let loader = $('<div class="loader-container"><i class="loader"></i></div>');
+		loader.appendTo(logBookStatusWrapper);
+		$.post('https://frmoderation.com/log-books/status', {id: 23868104}).then(response => {
+			loader.remove();
+			logBookStatusWrapper.removeClass('check-status');
+			if (response.profile) {
+				addLogBookStatusChange(logBookStatusWrapper, response.profile)
+			}
+		})
+	}
+
+	function update_log_book_state()
+	{
+		$('.log_book_item').each(function()
+		{
+			if($(this).has('.row').size()){
+				$(this).show();
+			}
+			else{
+				$(this).hide();
+			}
+		});
+	}
+
+	update_log_book_state();
+
+	
+	$('#message_sender form').submit(function(event){
+		let length = parseInt(140);
+		let  $this = $(this);
+		if ($('textarea[name=message]').val().length < length) {
+			return false;
+		}
+
+		if(pastedTexts.length) {
+			event.preventDefault();
+			$this.unbind("submit");
+			sendLog().then(() => {
+				$this.submit();
+			})
+			return false;
+		}
+
+	});
+
+	$('textarea.comment_textarea').change(function(){
+
+		$('input[name=comment]').val($(this).val());
+
+	    $('.comment-button').css('color', $(this).val() <span style="background-color: yellow;">?</span> 'blue' : 'silver');
+	})
+
+	
+	
+	$(".attachment-pop").on("click", function() {
+		$('#attachment-preview').attr('src', $(this).attr('src'));
+		$('#attachment-modal').modal('show');
+	});
+	$(".logbook-pop").on("click", function() {
+		$('#logbook-modal').modal('show');
+	});
+})
+</script>
+
+<div class="row">
+
+	<div class="col-lg-3" style="">
+
+				<div class="panel panel-default">
+		  <div class="panel-body" style="text-align:center; position:relative; padding:0;">
+		  	<small style="position:absolute; left:5px; top:5px;">201</small>
+		  	<small style="position:absolute; left:5px; bottom:5px;">14.00</small>
+		  	<strong style="font-size:26px; line-height:50px; color:green">30,76 €</strong>
+		  	<small style="position:absolute; right:5px; top:5px; color:red;">99</small>
+		  			  	<small style="position:absolute; right:5px; bottom:5px; color:green;">54,00 €</small>
+		  			  </div>
+		</div>
+		
+
+		
+		<div class="panel panel-default">
+		  <div class="panel-heading">
+		  	Operateur: ZumbaZumba (ID: 23868104)
+		  </div>
+		  <div class="panel-body">
+		  	<img src="./OperatorPanelFR162_files/82183d8e0493bfcd9440d6aa5d376543d9f78163.jpg" class="img-responsive img-rounded">
+		  	<div style="float:left; padding-top:15px; width:100%">
+
+		  				  			<div class="col-lg-6" style="margin:0; padding:0 0 5px 0;">
+		  				<a href="./OperatorPanelFR162_files/16224efc358b4ce150f81df746afeff3b8e5eae0.jpg" data-lightbox="ZumbaZumba">
+		  					<img src="./OperatorPanelFR162_files/16224efc358b4ce150f81df746afeff3b8e5eae0.jpg" class="img-rounded" style="height:110px; width:110px;">
+		  				</a>
+		  			</div>
+		  				  			<div class="col-lg-6" style="margin:0; padding:0 0 5px 0;">
+		  				<a href="./OperatorPanelFR162_files/6640d4f2125db711c3dc39cd184bdae3f5443d09.jpg" data-lightbox="ZumbaZumba">
+		  					<img src="./OperatorPanelFR162_files/6640d4f2125db711c3dc39cd184bdae3f5443d09.jpg" class="img-rounded" style="height:110px; width:110px;">
+		  				</a>
+		  			</div>
+		  				  			<div class="col-lg-6" style="margin:0; padding:0 0 5px 0;">
+		  				<a href="./OperatorPanelFR162_files/82183d8e0493bfcd9440d6aa5d376543d9f78163.jpg" data-lightbox="ZumbaZumba">
+		  					<img src="./OperatorPanelFR162_files/82183d8e0493bfcd9440d6aa5d376543d9f78163.jpg" class="img-rounded" style="height:110px; width:110px;">
+		  				</a>
+		  			</div>
+		  		
+		  	</div>
+
+		  	<div class="row" style="padding-top:15px;">
+		  		<div class="col-lg-6">
+		  			<dl style="margin:0; padding:0;">
+						<dt>Nom</dt>
+						<dd>Dolores</dd>
+		  			</dl>
+		  		</div>
+		  		<div class="col-lg-6">
+		  			<dl style="margin:0; padding:0;">
+						<dt>Pseudo</dt>
+						<dd>ZumbaZumba</dd>
+		  			</dl>
+		  		</div>
+		  	</div>
+
+	  	  	<div class="row">
+	  	  		<div class="col-lg-6">
+	  	  			<dl style="margin:0; padding:0;">
+	  					<dt>Sexe</dt>
+	  					<dd>Femme</dd>
+	  	  			</dl>
+	  	  		</div>
+	  	  		<div class="col-lg-6">
+	  	  			<dl style="margin:0; padding:0;">
+	  					<dt>cherche</dt>
+	  					<dd>Homme</dd>
+	  	  			</dl>
+	  	  		</div>
+	  	  	</div>
+
+  	  	  	<div class="row">
+  	  	  		<div class="col-lg-6">
+  	  	  			<dl style="margin:0; padding:0;">
+  	  					<dt>Couleur des cheveux</dt>
+  	  					<dd>Châtains</dd>
+  	  	  			</dl>
+  	  	  		</div>
+  	  	  		<div class="col-lg-6">
+  	  	  			<dl style="margin:0; padding:0;">
+  	  					<dt>Couleur des yeux</dt>
+  	  					<dd>Verts</dd>
+  	  	  			</dl>
+  	  	  		</div>
+  	  	  	</div>
+
+  	  	  	<div class="row">
+  	  	  		<div class="col-lg-6">
+  	  	  			<dl style="margin:0; padding:0;">
+  	  					<dt>Silhouette</dt>
+  	  					<dd>Normale</dd>
+  	  	  			</dl>
+  	  	  		</div>
+  	  	  		<div class="col-lg-6">
+		  			<dl style="margin:0; padding:0;">
+						<dt>Age</dt>
+						<dd>
+							<span style="font-weight:bold; color:red">
+								43
+							</span>
+							<small>(06-08-1981)</small>
+						</dd>
+		  			</dl>
+  	  	  		</div>
+  	  	  	</div>
+
+  	  	  	  	<div class="row">
+  	  	  	  		<div class="col-lg-6">
+  	  	  	  			<dl style="margin:0; padding:0;">
+  	  	  					<dt>taille (cm)</dt>
+  	  	  					<dd>166</dd>
+  	  	  	  			</dl>
+  	  	  	  		</div>
+  	  	  	  		<div class="col-lg-6">
+  	  	  	  			<dl style="margin:0; padding:0;">
+  	  	  					<dt>Poids (kg)</dt>
+  	  	  					<dd>64</dd>
+  	  	  	  			</dl>
+  	  	  	  		</div>
+  	  	  	  	</div>
+
+  	  	  	<div class="row">
+  	  	  		<div class="col-lg-6">
+		  			<dl style="margin:0; padding:0;">
+						<dt>Fumeur</dt>
+						<dd>Non</dd>
+		  			</dl>
+  	  	  		</div>
+  	  	  		<div class="col-lg-6" style="background-color: yellow;">
+  	  	  			<dl style="margin:0; padding:0;">
+  	  					<dt>Statut marital</dt>
+  	  					<dd>Relation libre</dd>
+  	  	  			</dl>
+  	  	  		</div>
+  	  	  	</div>
+				  <div class="row">
+					  <div class="col-lg-12">
+						  <dl style="margin:0; padding:0;">
+							  <dt>Ethnie</dt>
+							  <dd>Blanc / Caucasien</dd>
+						  </dl>
+					  </div>
+				  </div>
+
+  	  	  	<div class="row" style="padding-top: 10px; padding-bottom: 10px; background-color: yellow;">
+  	  	  		<div class="col-lg-12">
+  	  	  			<dl style="margin:0; padding:0;">
+  	  					<dd style="color:lightgreen">
+  	  						France, Languedoc-Roussillon, MONTPELLIER
+  	  					</dd>
+  	  	  			</dl>
+  	  	  		</div>
+  	  	  	</div>
+
+  	  	  	<div class="row" style="padding-bottom:10px">
+  	  	  		<div class="col-lg-12">
+  	  	  			<dl style="margin:0; padding:0;">
+  	  					<dt>Prise de contact: <span style="font-weight:normal">02-06-2025</span></dt>
+  	  	  			</dl>
+  	  	  		</div>
+  	  	  	</div>
+
+	  	  	<hr style="margin:0; padding-top:10px">
+
+	  	  	<p>
+	  	  		<strong>Description</strong><br>
+	  	  		
+	  	  	</p>
+	  	</div>
+	</div>
+
+				<div class="panel panel-default" style="margin-bottom:0; border-bottom:0;">
+		  <div class="panel-heading">Information personelle du Profil fictif</div>
+		  <div class="panel-body">
+			<div id="log_book_status_wrapper" style="margin-bottom: 1rem">
+							</div>
+		  	<form method="post" id="log_book_fake_wrapper" class="log_book_post " data-type="fake" data-conversation-id="2302422670" data-user-id="23868104" data-operator-id="19921">
+		  	<input type="hidden" name="_token" value="GkKV3EEaGfnsyuCcz3MYoXpkFoLQsJWnaE457iyL">
+		  	<div class="form-group"><label class="control-label" for="log_book_category_id">Categorie</label><select name="log_book_category_id" id="log_book_category_id" class="form-control" style="visibility: visible;"><option value="2">Prénom</option><option value="4">Localisation</option><option value="5">Travail</option><option value="6">Passions</option><option value="7">Preferences sexuelles</option><option value="8">habite avec/chez</option><option value="9">Relations</option><option value="10">Santé</option></select></div>
+			<div class="form-group"><label class="control-label" for="log_book_text">Information</label><textarea name="log_book_text" rows="10" cols="50" id="log_book_text" class="form-control"></textarea></div>
+			<button type="submit" class="btn btn btn-success col-lg-12">Ajouter information personnelle</button>
+		  	</form>
+		  </div>
+		</div>
+
+		<div class="panel-group" id="accordion1">
+
+					    <div class="panel panel-default log_book_item" id="panel1" style="margin: 0px; border-radius: 0px; display: none;">
+		        <div class="panel-heading">
+		             <h4 class="panel-title collapsed" data-toggle="collapse" data-target="#receiver_logbook_1" style="cursor:pointer">Données importantes</h4>
+		        </div>
+		        <div id="receiver_logbook_1" data-name="Données importantes" class="logbook_1 log-book-container panel-collapse collapse">
+		            <div class="panel-body">
+		            			            </div>
+		        </div>
+		    </div>
+		    		    <div class="panel panel-default log_book_item" id="panel2" style="margin:0; border-radius:0; 1">
+		        <div class="panel-heading">
+		             <h4 class="panel-title collapsed" data-toggle="collapse" data-target="#receiver_logbook_2" style="cursor:pointer">Prénom</h4>
+		        </div>
+		        <div id="receiver_logbook_2" data-name="Prénom" class="logbook_2 log-book-container panel-collapse collapse">
+		            <div class="panel-body">
+		            				            				            	<div class="row" title="Operator ID: 6343">
+			            		<div class="col-lg-10 log-book-text">Dolores</div>
+															</div>
+			            				            	<div class="row" title="Operator ID: 18721">
+			            		<div class="col-lg-10 log-book-text">Dolores</div>
+															</div>
+			            				            	<div class="row" title="Operator ID: 18721">
+			            		<div class="col-lg-10 log-book-text">Origine Portugaise</div>
+															</div>
+			            			            			            </div>
+		        </div>
+		    </div>
+		    		    <div class="panel panel-default log_book_item" id="panel3" style="margin: 0px; border-radius: 0px; display: none;">
+		        <div class="panel-heading">
+		             <h4 class="panel-title collapsed" data-toggle="collapse" data-target="#receiver_logbook_3" style="cursor:pointer">Apparence</h4>
+		        </div>
+		        <div id="receiver_logbook_3" data-name="Apparence" class="logbook_3 log-book-container panel-collapse collapse">
+		            <div class="panel-body">
+		            			            </div>
+		        </div>
+		    </div>
+		    		    <div class="panel panel-default log_book_item" id="panel4" style="margin:0; border-radius:0; 1">
+		        <div class="panel-heading">
+		             <h4 class="panel-title collapsed" data-toggle="collapse" data-target="#receiver_logbook_4" style="cursor:pointer">Localisation</h4>
+		        </div>
+		        <div id="receiver_logbook_4" data-name="Localisation" class="logbook_4 log-book-container panel-collapse collapse">
+		            <div class="panel-body">
+		            				            				            	<div class="row" title="Operator ID: 11469">
+			            		<div class="col-lg-10 log-book-text">centre-ville de Montpellier</div>
+															</div>
+			            			            			            </div>
+		        </div>
+		    </div>
+		    		    <div class="panel panel-default log_book_item" id="panel5" style="margin:0; border-radius:0; 1">
+		        <div class="panel-heading">
+		             <h4 class="panel-title collapsed" data-toggle="collapse" data-target="#receiver_logbook_5" style="cursor:pointer">Travail</h4>
+		        </div>
+		        <div id="receiver_logbook_5" data-name="Travail" class="logbook_5 log-book-container panel-collapse collapse">
+		            <div class="panel-body">
+		            				            				            	<div class="row" title="Operator ID: 11362">
+			            		<div class="col-lg-10 log-book-text">Responsable marketing.</div>
+															</div>
+			            				            	<div class="row" title="Operator ID: 11620">
+			            		<div class="col-lg-10 log-book-text">recueillant des données qualitatives et quantitatives sur le marché et la concurrence.</div>
+															</div>
+			            				            	<div class="row" title="Operator ID: 4221">
+			            		<div class="col-lg-10 log-book-text">Entreprise privée</div>
+															</div>
+			            			            			            </div>
+		        </div>
+		    </div>
+		    		    <div class="panel panel-default log_book_item" id="panel6" style="margin:0; border-radius:0; 1">
+		        <div class="panel-heading">
+		             <h4 class="panel-title collapsed" data-toggle="collapse" data-target="#receiver_logbook_6" style="cursor:pointer">Passions</h4>
+		        </div>
+		        <div id="receiver_logbook_6" data-name="Passions" class="logbook_6 log-book-container panel-collapse collapse">
+		            <div class="panel-body">
+		            				            				            	<div class="row" title="Operator ID: 5549">
+			            		<div class="col-lg-10 log-book-text">J'adore voyager, bouquiner, sortir avec mes amies.</div>
+															</div>
+			            				            	<div class="row" title="Operator ID: 17130">
+			            		<div class="col-lg-10 log-book-text">sport oui, la randonnée</div>
+															</div>
+			            				            	<div class="row" title="Operator ID: 7733">
+			            		<div class="col-lg-10 log-book-text">J'aime les films qui font pleurer, mais je déteste quand c'est violent.</div>
+															</div>
+			            			            			            </div>
+		        </div>
+		    </div>
+		    		    <div class="panel panel-default log_book_item" id="panel7" style="margin:0; border-radius:0; 1">
+		        <div class="panel-heading">
+		             <h4 class="panel-title collapsed" data-toggle="collapse" data-target="#receiver_logbook_7" style="cursor:pointer">Preferences sexuelles</h4>
+		        </div>
+		        <div id="receiver_logbook_7" data-name="Preferences sexuelles" class="logbook_7 log-book-container panel-collapse collapse">
+		            <div class="panel-body">
+		            				            				            	<div class="row" title="Operator ID: 10702">
+			            		<div class="col-lg-10 log-book-text">vaginal</div>
+															</div>
+			            				            	<div class="row" title="Operator ID: 12074">
+			            		<div class="col-lg-10 log-book-text">je n'ai jamais essayé la sodomie et je ne sais pas trop si je vais aimer ça</div>
+															</div>
+			            				            	<div class="row" title="Operator ID: 13021">
+			            		<div class="col-lg-10 log-book-text">Je n'ai jamais essayé ni avec du miel ni avec autres choses.</div>
+															</div>
+			            			            			            </div>
+		        </div>
+		    </div>
+		    		    <div class="panel panel-default log_book_item" id="panel8" style="margin:0; border-radius:0; 1">
+		        <div class="panel-heading">
+		             <h4 class="panel-title collapsed" data-toggle="collapse" data-target="#receiver_logbook_8" style="cursor:pointer">habite avec/chez</h4>
+		        </div>
+		        <div id="receiver_logbook_8" data-name="habite avec/chez" class="logbook_8 log-book-container panel-collapse collapse">
+		            <div class="panel-body">
+		            				            				            	<div class="row" title="Operator ID: 7907">
+			            		<div class="col-lg-10 log-book-text">J'habite avec mon fils, nous vivons dans un appartement</div>
+															</div>
+			            			            			            </div>
+		        </div>
+		    </div>
+		    		    <div class="panel panel-default log_book_item" id="panel9" style="margin:0; border-radius:0; 1">
+		        <div class="panel-heading">
+		             <h4 class="panel-title collapsed" data-toggle="collapse" data-target="#receiver_logbook_9" style="cursor:pointer">Relations</h4>
+		        </div>
+		        <div id="receiver_logbook_9" data-name="Relations" class="logbook_9 log-book-container panel-collapse collapse">
+		            <div class="panel-body">
+		            				            				            	<div class="row" title="Operator ID: 15807">
+			            		<div class="col-lg-10 log-book-text">Un fils unique de 22 ans</div>
+															</div>
+			            				            	<div class="row" title="Operator ID: 10586">
+			            		<div class="col-lg-10 log-book-text">Oui, je suis en relation libre. Pour tout te dire, il ne se passe plus rien entre nous !</div>
+															</div>
+			            				            	<div class="row" title="Operator ID: 2363">
+			            		<div class="col-lg-10 log-book-text">Mon fils étudie le droit, il est en troisième année maintenant</div>
+															</div>
+			            			            			            </div>
+		        </div>
+		    </div>
+		    		    <div class="panel panel-default log_book_item" id="panel10" style="margin:0; border-radius:0; 1">
+		        <div class="panel-heading">
+		             <h4 class="panel-title collapsed" data-toggle="collapse" data-target="#receiver_logbook_10" style="cursor:pointer">Santé</h4>
+		        </div>
+		        <div id="receiver_logbook_10" data-name="Santé" class="logbook_10 log-book-container panel-collapse collapse">
+		            <div class="panel-body">
+		            				            				            	<div class="row" title="Operator ID: 23219">
+			            		<div class="col-lg-10 log-book-text">Tocs : je suis maniaque du rangement et de la propreté, et je suis aussi très curieuse.</div>
+															</div>
+			            			            			            </div>
+		        </div>
+		    </div>
+		    		    <div class="panel panel-default log_book_item" id="panel11" style="margin: 0px; border-radius: 0px; display: none;">
+		        <div class="panel-heading">
+		             <h4 class="panel-title collapsed" data-toggle="collapse" data-target="#receiver_logbook_11" style="cursor:pointer">Otros</h4>
+		        </div>
+		        <div id="receiver_logbook_11" data-name="Otros" class="logbook_11 log-book-container panel-collapse collapse">
+		            <div class="panel-body">
+		            			            </div>
+		        </div>
+		    </div>
+		    
+		</div>
+
+		
+	<div class="panel panel-default">
+	<div class="panel-body">
+
+	  	  	<h4>Pour</h4>
+
+	  	  	<ul class="list-group">
+	  	  			  	  			<li class="list-group-item">Tchater</li>
+	  	  			  	  			<li class="list-group-item">Rendez-vous sans tabous</li>
+	  	  			  	  			<li class="list-group-item">Sortir dîner</li>
+	  	  			  	  			<li class="list-group-item">Juste une nuit</li>
+	  	  			  	  	</ul>
+
+	  	  	<hr style="margin:0; padding-top:10px">
+
+	  	  	<h4>Tes préférences</h4>
+
+	  	  	<ul class="list-group">
+	  	  			  	  			<li class="list-group-item">Echangisme</li>
+	  	  			  	  			<li class="list-group-item">Fétichiste</li>
+	  	  			  	  			<li class="list-group-item">Déguisements / Jeux</li>
+	  	  			  	  			<li class="list-group-item">En groupe/Trio</li>
+	  	  			  	  	</ul>
+
+	  	  	<hr style="margin:0; padding-top:10px">
+
+	  	  	<h4>Ton caractère</h4>
+
+	  	  	<ul class="list-group">
+	  	  			  	  			<li class="list-group-item">Entreprenant</li>
+	  	  			  	  			<li class="list-group-item">Sociable</li>
+	  	  			  	  			<li class="list-group-item">Curieux</li>
+	  	  			  	  			<li class="list-group-item">Fougueux</li>
+	  	  			  	  			<li class="list-group-item">Sûr de moi</li>
+	  	  			  	  	</ul>
+
+		  </div>
+		</div>
+	</div>
+
+	<div class="col-lg-6" style="">
+
+
+		
+							<div class="alert" style="background-color:yellow;color:black">
+				<span>
+				<i class="glyphicon glyphicon-envelope"></i>
+				31 messages disponibles</span>
+				<span class="pull-right">
+
+					<i class="glyphicon glyphicon-user"></i>
+					<span title="Nombre d&#39;utilisateurs contactés dans les 10 derniers messages envoyés.">4</span>
+					/
+					<span title="Utilisateurs contactés / Messages envoyés">9</span>
+
+					<span title="Packs achetés">
+					<i class="glyphicon glyphicon-shopping-cart" style="text-indent: 10px"></i>
+					2
+					</span>
+				</span>
+			</div>
+				
+		
+		<div class="panel panel-default">
+		  <div class="panel-heading pull-left" style="width:100%">Conversation (ID: 2302422670)
+		  			  			  	<!-- <a class="btn btn-xs btn-warning pull-right" id="skip" data-toggle="modal" data-target="#return">Retourner au système</a> -->
+		  	
+		  	
+		  </div>
+		  <div class="panel-body" id="message_sender">
+
+		  	
+			  				  					  			<form method="POST" action="https://frmoderation.com/messages/send_message"><input type="hidden" name="_token" value="GkKV3EEaGfnsyuCcz3MYoXpkFoLQsJWnaE457iyL">
+			  		
+			  	<input type="hidden" name="message_id" value="226202384">
+
+
+			  				  		<input type="hidden" name="attachment_id">
+			  				  	<div class="form-group"><label class="control-label" for="message"></label><textarea name="message" rows="10" cols="50" id="message" class="form-control" style="width: 610px; height: 160px; position: relative; left: -43px; top: -60px; margin-bottom: -70px;"></textarea></div>
+			  	<input type="hidden" name="delay" value="1">
+			  	<input type="hidden" name="comment">
+			  	<input type="hidden" name="original">
+
+				<div class="row">
+					<div class="col-xs-4">
+			  				  	<input type="submit" value="Envoyer" class="btn btn-success" disabled="disabled" tabindex="0">
+			  						</div>
+					<div class="col-xs-4">
+																	</div>
+					<div class="col-xs-4">
+			  				  		<a class="btn btn-danger pull-right delete-are-you-sure" id="skip" href="https://frmoderation.com/messages/delete" style="margin-left:15px">Effacer</a>
+			  	
+			  	
+			  	
+			  				  	<div class="pull-right charactercount" style="padding-top:6px">Manque:longueur caractère</div>
+			  						</div>
+				</div>
+			  	</form>
+
+		  	
+		  	
+		  	<hr>
+
+		  	<div class="col-lg-12 chat_history_container" style="max-height: 900px; overflow: hidden scroll; font-size: 14px;">
+
+		  	<dl class="chat_history">
+		  		
+		  		
+				<dt style="" title="
+">YoYo341
+    			le <span style="color:gray">02-07-2025</span>
+    			à <span style="color:gray">21:12</span>
+				</dt>
+		  		<dd style="border-bottom:1px solid silver; padding-bottom:5px; margin-bottom:10px;
+		  				  		
+		  				  		">
+		  			Yvan et toi <span style="background-color: yellow;">?</span>J'aimerais te donner mon numéro pour texté sans payer si ça te dérange pas...Je suis comme ça aussi cool et attentionné trenkl. 
+J'ai un mazet sur mon terrain à St Pargoire <span style="background-color: yellow;">tu</span> vois où c'est <span style="background-color: yellow;">?</span>
+Je suis entrain de le refaire j'ai déjà fait le toit maintenant je retape l'intérieur...
+		  					  		</dd>
+		  		
+		  		
+				<dt style="color:green;" title="Operator: Sandrine KC (1488)
+">ZumbaZumba
+    			le <span style="color:green;">02-07-2025</span>
+    			à <span style="color:green;">20:45</span>
+				</dt>
+		  		<dd style="border-bottom:1px solid silver; padding-bottom:5px; margin-bottom:10px;
+		  				  		color:green;
+		  				  		">
+		  			<span style="background-color: yellow;">Tu</span> es en vacances pendant deux mois <span style="background-color: yellow;">?</span> Quelle veine, <span style="background-color: yellow;">tu</span> fais quoi de ces deux mois, <span style="background-color: yellow;">tu</span> es donc parti à l'étranger <span style="background-color: yellow;">?</span> Moi, j'ai envie de m'amuser en toute sécurité, je veux me trouver un partenaire de jeux, sympa et cool pour partager des moments très sympas. Au fait, c'est quoi ton prénom.
+		  					  		</dd>
+		  		
+		  		
+				<dt style="" title="
+">YoYo341
+    			le <span style="color:gray">02-07-2025</span>
+    			à <span style="color:gray">20:38</span>
+				</dt>
+		  		<dd style="border-bottom:1px solid silver; padding-bottom:5px; margin-bottom:10px;
+		  				  		
+		  				  		">
+		  			Je suis en vacances 2 mois. J'aime les femmes qui savent ce qu'elles veulent direct qui donnent envie de leurs faire du bien sexi pas vulgaire attentionné Séduisante à l'écoute de son partenaire 
+J'aimerais en profiter en lui faisant se qu'elle aime se qu'elle préfère dans le sex...En restant dans la normalité. J'suis pas un taré du c..
+Des petits jeux coquin trenkl.
+L'amour en extérieur c'est sympa ....Là moi je campe sur mon terrain dans ma caravane au milieu des vignes. Bonjour les cigales...
+		  					  		</dd>
+		  		
+		  		
+				<dt style="color:green;" title="Operator: Abigail L (17856)
+">ZumbaZumba
+    			le <span style="color:green;">02-07-2025</span>
+    			à <span style="color:green;">18:48</span>
+				</dt>
+		  		<dd style="border-bottom:1px solid silver; padding-bottom:5px; margin-bottom:10px;
+		  				  		color:green;
+		  				  		">
+		  			Oui, c'est vrai qu'en vacance, on à plus de temps pour le coup, mais <span style="background-color: yellow;">tu</span> es en vacances jusqu'à quand <span style="background-color: yellow;">?</span> <span style="background-color: yellow;">Tu</span> aimes les brunes donc, mais au niveau du caractère, comment <span style="background-color: yellow;">tu</span> les aimes les femmes <span style="background-color: yellow;">?</span> Et <span style="background-color: yellow;">tu</span> aimerais en profiter comment avec une femme <span style="background-color: yellow;">?</span>
+		  					  		</dd>
+		  		
+		  		
+				<dt style="" title="
+">YoYo341
+    			le <span style="color:gray">02-07-2025</span>
+    			à <span style="color:gray">18:30</span>
+				</dt>
+		  		<dd style="border-bottom:1px solid silver; padding-bottom:5px; margin-bottom:10px;
+		  				  		
+		  				  		">
+		  			Non détrompe toi. C'est la première fois que je vais sur ce genre de site. Après c'est que je suis en vacances et j'ai personne dans ma vie. J'ai dû tps donc j'aimerais en profiter 
+Et comment <span style="background-color: yellow;">tu</span> es mon style de femme voilà . bise
+		  					  		</dd>
+		  		
+		  		
+				<dt style="color:green;" title="
+">ZumbaZumba
+    			le <span style="color:gray">02-07-2025</span>
+    			à <span style="color:gray">15:11</span>
+				</dt>
+		  		<dd style="border-bottom:1px solid silver; padding-bottom:5px; margin-bottom:10px;
+		  				  		color:green;
+		  				  		">
+		  			Je ne sais pas pourquoi, mais j'ai l'impression que <span style="background-color: yellow;">tu</span> dois être un super dragueur non <span style="background-color: yellow;">?</span>
+		  					  		</dd>
+		  		
+		  		
+				<dt style="" title="
+">YoYo341
+    			le <span style="color:gray">02-07-2025</span>
+    			à <span style="color:gray">13:10</span>
+				</dt>
+		  		<dd style="border-bottom:1px solid silver; padding-bottom:5px; margin-bottom:10px;
+		  				  		
+		  				  		">
+		  			Bonjour. Non j'ai pas peur. J'étais à l'étranger. Si <span style="background-color: yellow;">tu</span> veux faire connaissance y a pas de problème pour moi je suis dispo. Mais presque plus de  crédit...J'aimerais bien répondre à toutes tes exigences si <span style="background-color: yellow;">tu</span> aimes ça...
+		  					  		</dd>
+		  		
+		  		
+				<dt style="color:green;" title="
+">ZumbaZumba
+    			le <span style="color:gray">03-06-2025</span>
+    			à <span style="color:gray">20:04</span>
+				</dt>
+		  		<dd style="border-bottom:1px solid silver; padding-bottom:5px; margin-bottom:10px;
+		  				  		color:green;
+		  				  		">
+		  			<span style="background-color: yellow;">Tu</span> as peur <span style="background-color: yellow;">?</span>
+		  					  		</dd>
+		  		
+		  		
+				<dt style="color:green;" title="
+">ZumbaZumba
+    			le <span style="color:gray">02-06-2025</span>
+    			à <span style="color:gray">22:03</span>
+				</dt>
+		  		<dd style="border-bottom:1px solid silver; padding-bottom:5px; margin-bottom:10px;
+		  				  		color:green;
+		  				  		">
+		  			J'ai une envie de baiser que <span style="background-color: yellow;">tu</span> imagines pas, le premier qui est chaud il me baise
+		  					  		</dd>
+		  				  	</dl>
+		  	</div>
+		  </div>
+		</div>
+
+						<div class="panel-group" id="accordion3">
+		    <div class="panel panel-default" id="panel-add-files">
+		        <div class="panel-heading">
+		             <h4 class="panel-title" data-toggle="collapse" data-target="#collapseAddFiles" style="cursor:pointer">Ajouter fichier (1)</h4>
+		        </div>
+		        <div id="collapseAddFiles" class="panel-collapse collapse in" style="">
+		            <div class="panel-body">
+		            	<div class="col-lg-3" style="position:relative; margin-bottom:15px;">
+		            		<input type="radio" class="attachment_id" name="attachment" value="" style="position:absolute; right:20px; top:10px;" checked="checked">
+		            		<div class="img-rounded" style="line-height:110px; height:110px; width:110px; border:1px solid; text-align:center; font-weight:bold;">Rien dájouté</div>
+		            	</div>
+		            			            		<div class="col-lg-3" style="position:relative; margin-bottom:15px;">
+		            					            				<input type="radio" class="attachment_id" name="attachment" value="19901990" style="position:absolute; right:20px; top:10px;">
+		            			
+		            			<img src="./OperatorPanelFR162_files/aa775ef4de1f3692d20cc3e04b8beb58a7762e31.jpg" class="img-rounded" width="110" height="110">
+		            		</div>
+		            			            </div>
+		        </div>
+		    </div>
+		</div>
+		
+	</div>
+
+		<div class="col-lg-3" style="">
+
+			<div class="panel panel-default">
+			  <div class="panel-heading">
+			  	Client: YoYo341 (ID: 44236067)
+			  				  	    <span class="pull-right" style="font-weight:bold; color:green">$</span>
+			  				  </div>
+		  		  <div class="panel-body">
+		  		  	<img src="./OperatorPanelFR162_files/male.png" class="img-responsive img-rounded">
+
+		  		  	<div style="padding-top:15px; float:left;">
+		  		  			  		  	</div>
+
+		  		  	<div class="row" style="padding-top:15px;">
+		  		  		<div class="col-lg-6">
+		  		  			<dl style="margin:0; padding:0;">
+		  						<dt>Nom</dt>
+		  						<dd></dd>
+		  		  			</dl>
+		  		  		</div>
+		  		  		<div class="col-lg-6">
+		  		  			<dl style="margin:0; padding:0;">
+		  						<dt>Pseudo</dt>
+		  						<dd>YoYo341</dd>
+		  		  			</dl>
+		  		  		</div>
+		  		  	</div>
+
+		  	  	  	<div class="row">
+		  	  	  		<div class="col-lg-6">
+		  	  	  			<dl style="margin:0; padding:0;">
+		  	  					<dt>Sexe</dt>
+		  	  					<dd>Homme</dd>
+		  	  	  			</dl>
+		  	  	  		</div>
+		  	  	  		<div class="col-lg-6">
+		  	  	  			<dl style="margin:0; padding:0;">
+		  	  					<dt>cherche</dt>
+		  	  					<dd>Femme</dd>
+		  	  	  			</dl>
+		  	  	  		</div>
+		  	  	  	</div>
+
+		    	  	  	<div class="row">
+		    	  	  		<div class="col-lg-6">
+		    	  	  			<dl style="margin:0; padding:0;">
+		    	  					<dt>Couleur des cheveux</dt>
+		    	  					<dd>Châtains</dd>
+		    	  	  			</dl>
+		    	  	  		</div>
+		    	  	  		<div class="col-lg-6">
+		    	  	  			<dl style="margin:0; padding:0;">
+		    	  					<dt>Couleur des yeux</dt>
+		    	  					<dd>Marrons</dd>
+		    	  	  			</dl>
+		    	  	  		</div>
+		    	  	  	</div>
+
+		    	  	  	<div class="row">
+		    	  	  		<div class="col-lg-6">
+		    	  	  			<dl style="margin:0; padding:0;">
+		    	  					<dt>Silhouette</dt>
+		    	  					<dd>Normale</dd>
+		    	  	  			</dl>
+		    	  	  		</div>
+		    	  	  		<div class="col-lg-6">
+		  		  			<dl style="margin:0; padding:0;">
+		  						<dt>Age</dt>
+		  						<dd>
+		  							<span style="font-weight:bold; color:red">
+		  								55
+		  							</span>
+
+		  							<!--small>(01-01-1970)</small-->
+		  						</dd>
+		  		  			</dl>
+		    	  	  		</div>
+		    	  	  	</div>
+
+		    	  	  	  	<div class="row">
+		    	  	  	  		<div class="col-lg-6">
+		    	  	  	  			<dl style="margin:0; padding:0;">
+		    	  	  					<dt>taille (cm)</dt>
+		    	  	  					<dd>175</dd>
+		    	  	  	  			</dl>
+		    	  	  	  		</div>
+		    	  	  	  		<div class="col-lg-6">
+		    	  	  	  			<dl style="margin:0; padding:0;">
+		    	  	  					<dt>Poids (kg)</dt>
+		    	  	  					<dd>70</dd>
+		    	  	  	  			</dl>
+		    	  	  	  		</div>
+		    	  	  	  	</div>
+
+		    	  	  	<div class="row">
+		    	  	  		<div class="col-lg-6">
+		  		  			<dl style="margin:0; padding:0;">
+		  						<dt>Fumeur</dt>
+		  						<dd></dd>
+		  		  			</dl>
+		    	  	  		</div>
+		    	  	  		<div class="col-lg-6" style="background-color: yellow;">
+		    	  	  			<dl style="margin:0; padding:0;">
+		    	  	  				<dt>Statut marital</dt>
+		    	  	  				<dd></dd>
+		    	  	  			</dl>
+		    	  	  		</div>
+		    	  	  	</div>
+
+		    	  	  	<div class="row" style="padding-bottom:10px">
+		    	  	  		<div class="col-lg-6">
+		    	  	  			<dl style="margin:0; padding:0;">
+		    	  					<dt>Visites</dt>
+		    	  					<dd>195</dd>
+		    	  	  			</dl>
+		    	  	  		</div>
+								<div class="col-lg-6">
+									<dl style="margin:0; padding:0;">
+										<dt>Ethnie</dt>
+										<dd>N/A</dd>
+									</dl>
+								</div>
+		    	  	  	</div>
+
+		    	  	  	<div class="row" style="padding-bottom:10px">
+		    	  	  		<div class="col-lg-12">
+		    	  	  			<dl style="margin:0; padding:0; ">
+		    	  					<dd style="color:lightgreen">
+		    	  						France, Languedoc-Roussillon, MONTPELLIER
+		    	  					</dd>
+		    	  	  			</dl>
+		    	  	  		</div>
+		    	  	  	</div>
+
+		    	  	  	<div class="row" style="padding-bottom: 10px; background-color: yellow;">
+		    	  	  		<div class="col-lg-12">
+		    	  	  			<dl style="margin:0; padding:0;">
+		    	  					<dt>Prise de contact: <span style="font-weight:normal">02-06-2025</span></dt>
+		    	  	  			</dl>
+		    	  	  		</div>
+		    	  	  	</div>
+
+		  	  	  	<hr style="margin:0; padding-top:10px">
+
+		  	  	  	<p>
+		  	  	  		<strong>Description</strong><br>
+		  	  	  		
+		  	  	  	</p>
+
+		  	  	</div>
+		  	</div>
+
+						<div class="panel panel-default" style="margin-bottom:0; border-bottom:0;">
+			  <div class="panel-heading">Information personnelle du client</div>
+			  <div class="panel-body">
+			  	<form method="post" class="log_book_post" data-type="real" data-conversation-id="2302422670" data-user-id="44236067" data-operator-id="19921">
+				<input type="hidden" name="_token" value="GkKV3EEaGfnsyuCcz3MYoXpkFoLQsJWnaE457iyL">
+			  	<div class="form-group"><label class="control-label" for="log_book_category_id">Categorie</label><select name="log_book_category_id" id="log_book_category_id" class="form-control" style="visibility: visible;"><option value="2">Prénom</option><option value="4">Localisation</option><option value="5">Travail</option><option value="6">Passions</option><option value="7">Preferences sexuelles</option><option value="8">habite avec/chez</option><option value="9">Relations</option><option value="10">Santé</option></select></div>
+			  	<div class="form-group"><label class="control-label" for="log_book_text">Information</label><textarea name="log_book_text" rows="10" cols="50" id="log_book_text" class="form-control"></textarea></div>
+			  	<button type="submit" class="btn btn btn-success col-lg-12">Ajouter information personnelle</button>
+			  	</form>
+			  </div>
+			</div>
+
+			<div class="panel-group" id="accordion4">
+
+							    <div class="panel panel-default log_book_item" id="panel-1" style="margin: 0px; border-radius: 0px; display: none;">
+			        <div class="panel-heading">
+			             <h4 class="panel-title collapsed" data-toggle="collapse" data-target="#sender_logbook_1" style="cursor:pointer">Données importantes</h4>
+			        </div>
+			        <div id="sender_logbook_1" data-name="Données importantes" class="logbook_1 log-book-container panel-collapse collapse">
+			            <div class="panel-body">
+			            				            </div>
+			        </div>
+			    </div>
+			    			    <div class="panel panel-default log_book_item" id="panel-2" style="margin: 0px; border-radius: 0px; display: none;">
+			        <div class="panel-heading">
+			             <h4 class="panel-title collapsed" data-toggle="collapse" data-target="#sender_logbook_2" style="cursor:pointer">Prénom</h4>
+			        </div>
+			        <div id="sender_logbook_2" data-name="Prénom" class="logbook_2 log-book-container panel-collapse collapse">
+			            <div class="panel-body">
+			            				            </div>
+			        </div>
+			    </div>
+			    			    <div class="panel panel-default log_book_item" id="panel-3" style="margin: 0px; border-radius: 0px; display: none;">
+			        <div class="panel-heading">
+			             <h4 class="panel-title collapsed" data-toggle="collapse" data-target="#sender_logbook_3" style="cursor:pointer">Apparence</h4>
+			        </div>
+			        <div id="sender_logbook_3" data-name="Apparence" class="logbook_3 log-book-container panel-collapse collapse">
+			            <div class="panel-body">
+			            				            </div>
+			        </div>
+			    </div>
+			    			    <div class="panel panel-default log_book_item" id="panel-4" style="margin: 0px; border-radius: 0px; display: none;">
+			        <div class="panel-heading">
+			             <h4 class="panel-title collapsed" data-toggle="collapse" data-target="#sender_logbook_4" style="cursor:pointer">Localisation</h4>
+			        </div>
+			        <div id="sender_logbook_4" data-name="Localisation" class="logbook_4 log-book-container panel-collapse collapse">
+			            <div class="panel-body">
+			            				            </div>
+			        </div>
+			    </div>
+			    			    <div class="panel panel-default log_book_item" id="panel-5" style="margin: 0px; border-radius: 0px; display: none;">
+			        <div class="panel-heading">
+			             <h4 class="panel-title collapsed" data-toggle="collapse" data-target="#sender_logbook_5" style="cursor:pointer">Travail</h4>
+			        </div>
+			        <div id="sender_logbook_5" data-name="Travail" class="logbook_5 log-book-container panel-collapse collapse">
+			            <div class="panel-body">
+			            				            </div>
+			        </div>
+			    </div>
+			    			    <div class="panel panel-default log_book_item" id="panel-6" style="margin: 0px; border-radius: 0px; display: none;">
+			        <div class="panel-heading">
+			             <h4 class="panel-title collapsed" data-toggle="collapse" data-target="#sender_logbook_6" style="cursor:pointer">Passions</h4>
+			        </div>
+			        <div id="sender_logbook_6" data-name="Passions" class="logbook_6 log-book-container panel-collapse collapse">
+			            <div class="panel-body">
+			            				            </div>
+			        </div>
+			    </div>
+			    			    <div class="panel panel-default log_book_item" id="panel-7" style="margin: 0px; border-radius: 0px; display: none;">
+			        <div class="panel-heading">
+			             <h4 class="panel-title collapsed" data-toggle="collapse" data-target="#sender_logbook_7" style="cursor:pointer">Preferences sexuelles</h4>
+			        </div>
+			        <div id="sender_logbook_7" data-name="Preferences sexuelles" class="logbook_7 log-book-container panel-collapse collapse">
+			            <div class="panel-body">
+			            				            </div>
+			        </div>
+			    </div>
+			    			    <div class="panel panel-default log_book_item" id="panel-8" style="margin: 0px; border-radius: 0px; display: none;">
+			        <div class="panel-heading">
+			             <h4 class="panel-title collapsed" data-toggle="collapse" data-target="#sender_logbook_8" style="cursor:pointer">habite avec/chez</h4>
+			        </div>
+			        <div id="sender_logbook_8" data-name="habite avec/chez" class="logbook_8 log-book-container panel-collapse collapse">
+			            <div class="panel-body">
+			            				            </div>
+			        </div>
+			    </div>
+			    			    <div class="panel panel-default log_book_item" id="panel-9" style="margin: 0px; border-radius: 0px; display: none;">
+			        <div class="panel-heading">
+			             <h4 class="panel-title collapsed" data-toggle="collapse" data-target="#sender_logbook_9" style="cursor:pointer">Relations</h4>
+			        </div>
+			        <div id="sender_logbook_9" data-name="Relations" class="logbook_9 log-book-container panel-collapse collapse">
+			            <div class="panel-body">
+			            				            </div>
+			        </div>
+			    </div>
+			    			    <div class="panel panel-default log_book_item" id="panel-10" style="margin: 0px; border-radius: 0px; display: none;">
+			        <div class="panel-heading">
+			             <h4 class="panel-title collapsed" data-toggle="collapse" data-target="#sender_logbook_10" style="cursor:pointer">Santé</h4>
+			        </div>
+			        <div id="sender_logbook_10" data-name="Santé" class="logbook_10 log-book-container panel-collapse collapse">
+			            <div class="panel-body">
+			            				            </div>
+			        </div>
+			    </div>
+			    			    <div class="panel panel-default log_book_item" id="panel-11" style="margin: 0px; border-radius: 0px; display: none;">
+			        <div class="panel-heading">
+			             <h4 class="panel-title collapsed" data-toggle="collapse" data-target="#sender_logbook_11" style="cursor:pointer">Otros</h4>
+			        </div>
+			        <div id="sender_logbook_11" data-name="Otros" class="logbook_11 log-book-container panel-collapse collapse">
+			            <div class="panel-body">
+			            				            </div>
+			        </div>
+			    </div>
+			    
+			</div>
+			
+			<div class="panel panel-default">
+				<div class="panel-body">
+
+		  	  	  	<h4>Pour</h4>
+
+		  	  	  	<ul class="list-group">
+		  	  	  				  	  	  	</ul>
+
+		  	  	  	<hr style="margin:0; padding-top:10px">
+
+		  	  	  	<h4>Tes préférences</h4>
+
+		  	  	  	<ul class="list-group">
+		  	  	  				  	  	  	</ul>
+
+		  	  	  	<hr style="margin:0; padding-top:10px">
+
+		  	  	  	<h4>Ton caractère</h4>
+
+		  	  	  	<ul class="list-group">
+		  	  	  				  	  	  	</ul>
+		  		  </div>
+			</div>
+
+		</div>
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="return" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title" id="myModalLabel">Motif du remboursement</h4>
+      </div>
+      <form method="POST" action="https://frmoderation.com/messages/skip" accept-charset="UTF-8"><input name="_token" type="hidden" value="GkKV3EEaGfnsyuCcz3MYoXpkFoLQsJWnaE457iyL">
+      <div class="modal-body">
+        <textarea class="form-control comment_textarea" style="height:75px" name="reason" cols="50" rows="10"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Retourner au système</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- End modal -->
+
+<!-- Creates the bootstrap modal where the image will appear -->
+<div class="modal fade" id="attachment-modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+			</div>
+			<div class="modal-body">
+				<img src="https://frmoderation.com/messages" id="attachment-preview" style="max-width: 100%; max-height: 100%">
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+</div>
+<div class="footer">
+    <div class="footer-content">
+        <div class="footer-address">
+            Centanni Inc,
+            Trust Company Complex, Ajeltake Road, Ajeltake Island,
+            Majuro,
+            MH96960,
+            Marshall Islands
+        </div>
+    </div>
+</div>
+<div id="lightboxOverlay" class="lightboxOverlay" style="display: none; width: 1265px; height: 4002px;"></div><div id="lightbox" class="lightbox" style="display: none; top: 370px; left: 0px;"><div class="lb-outerContainer" style="width: 502px; height: 585px;"><div class="lb-container"><img class="lb-image" src="./OperatorPanelFR162_files/6640d4f2125db711c3dc39cd184bdae3f5443d09.jpg" style="display: block; width: 494px; height: 577px;"><div class="lb-nav" style="display: block;"><a class="lb-prev" href="https://frmoderation.com/messages" style="display: block;"></a><a class="lb-next" href="https://frmoderation.com/messages" style="display: block;"></a></div><div class="lb-loader" style="display: none;"><a class="lb-cancel"></a></div></div></div><div class="lb-dataContainer" style="display: block; width: 502px;"><div class="lb-data"><div class="lb-details"><span class="lb-caption" style="display: none;"></span><span class="lb-number" style="display: none;"></span></div><div class="lb-closeContainer"><a class="lb-close"></a></div></div></div></div>
+        <svg id="advanced-image-filters" style="display: none;">
+            <!-- Groupe Flou -->
+            <filter id="pixelate-filter"><fegaussianblur id="pixelate-gaussian-blur" stdDeviation="4" in="SourceGraphic"></fegaussianblur><fecomponenttransfer><fefunca type="discrete" tableValues="0 1"></fefunca><fefuncr type="discrete" tableValues="0 0.2 0.4 0.6 0.8 1"></fefuncr><fefuncg type="discrete" tableValues="0 0.2 0.4 0.6 0.8 1"></fefuncg><fefuncb type="discrete" tableValues="0 0.2 0.4 0.6 0.8 1"></fefuncb></fecomponenttransfer></filter>
+
+            <!-- Groupe Artistique -->
+            <filter id="oil-paint-filter"><femorphology id="oil-paint-morphology" operator="dilate" radius="4" in="SourceGraphic"></femorphology></filter>
+            <filter id="halftone-filter"><fecolormatrix type="saturate" values="0" result="grayscale"></fecolormatrix><fecomponenttransfer id="halftone-transfer" result="dithered"><fefuncr type="discrete" tableValues="0 1"></fefuncr><fefuncg type="discrete" tableValues="0 1"></fefuncg><fefuncb type="discrete" tableValues="0 1"></fefuncb></fecomponenttransfer></filter>
+            <filter id="posterize-filter"><fecomponenttransfer id="posterize-transfer"><fefuncr type="discrete" tableValues="0 0.5 1"></fefuncr><fefuncg type="discrete" tableValues="0 0.5 1"></fefuncg><fefuncb type="discrete" tableValues="0 0.5 1"></fefuncb></fecomponenttransfer></filter>
+            <filter id="pencil-sketch-filter"><fecolormatrix in="SourceGraphic" type="saturate" values="0" result="grayscale"></fecolormatrix><fecomponenttransfer in="grayscale" result="inverted"><fefuncr type="table" tableValues="1 0"></fefuncr><fefuncg type="table" tableValues="1 0"></fefuncg><fefuncb type="table" tableValues="1 0"></fefuncb></fecomponenttransfer><fegaussianblur in="inverted" stdDeviation="2" result="blurred-inverted"></fegaussianblur><feblend in="grayscale" in2="blurred-inverted" mode="color-dodge" result="sketch"></feblend><fecomposite id="sketch-composite" in="sketch" in2="SourceGraphic" operator="arithmetic" k1="0" k2="1" k3="0" k4="0"></fecomposite></filter>
+            <filter id="old-photo-filter"><fecolormatrix type="matrix" values="0.393 0.769 0.189 0 0  0.349 0.686 0.168 0 0  0.272 0.534 0.131 0 0  0 0 0 1 0" result="sepia"></fecolormatrix><feturbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" seed="5" result="noise"></feturbulence><fediffuselighting in="noise" lighting-color="#888" surfaceScale="0.5" result="light"><fedistantlight azimuth="45" elevation="45"></fedistantlight></fediffuselighting><fecomposite in="sepia" in2="light" operator="arithmetic" k1="0" k2="1" k3="0.2" k4="0" result="textured"></fecomposite><fecomposite id="oldphoto-composite" in="textured" in2="SourceGraphic" operator="arithmetic" k1="0" k2="1" k3="0" k4="0"></fecomposite></filter>
+            <filter id="watercolor-filter"><fegaussianblur id="watercolor-blur" stdDeviation="2" in="SourceGraphic" result="soft"></fegaussianblur><feturbulence type="fractalNoise" baseFrequency="0.03" numOctaves="2" result="noise"></feturbulence><fedisplacementmap in="soft" in2="noise" scale="5" result="bleed"></fedisplacementmap><fecomposite id="watercolor-composite" in="bleed" in2="SourceGraphic" operator="arithmetic" k1="0" k2="1" k3="0" k4="0"></fecomposite></filter>
+            <filter id="charcoal-filter"><fecolormatrix in="SourceGraphic" type="saturate" values="0" result="grayscale"></fecolormatrix><fegaussianblur id="charcoal-blur" in="grayscale" stdDeviation="2" result="smudge"></fegaussianblur><fecomponenttransfer in="smudge" result="contrast"><fefuncr type="gamma" amplitude="1" exponent="1.5"></fefuncr><fefuncg type="gamma" amplitude="1" exponent="1.5"></fefuncg><fefuncb type="gamma" amplitude="1" exponent="1.5"></fefuncb></fecomponenttransfer><feblend in="smudge" in2="contrast" mode="multiply"></feblend></filter>
+
+            <!-- Groupe Dessin & Contour -->
+            <filter id="edge-detection-filter"><fecolormatrix type="saturate" values="0" result="grayscale"></fecolormatrix><feconvolvematrix kernelMatrix="1 1 1, 1 -8 1, 1 1 1" preserveAlpha="true" result="edges"></feconvolvematrix><fecomposite id="edge-composite" in="edges" in2="SourceGraphic" operator="arithmetic" k1="0" k2="1" k3="0" k4="0"></fecomposite></filter>
+            <filter id="engraving-filter">
+                <fecolormatrix type="saturate" values="0"></fecolormatrix>
+                <fegaussianblur id="engraving-blur" stdDeviation="1" result="blur"></fegaussianblur>
+                <feconvolvematrix in="blur" kernelMatrix="-2 -1 0 -1 1 1 0 1 2" result="emboss"></feconvolvematrix>
+                <fecomponenttransfer in="emboss"><fefunca type="gamma" exponent="3"></fefunca></fecomponenttransfer>
+            </filter>
+        </svg>
+    <div id="image-blur-controls" style="top: 0px; left: 1090.4px;"><button id="image-blur-toggle" title="Désactiver les filtres">👁️</button><div id="blur-settings-container"><select id="blur-style-selector" style="visibility: visible;">
+        <optgroup label="Flou &amp; Distorsion">
+            <option value="blur">Flou</option>
+            <option value="pixelate">Pixelisation</option>
+        </optgroup>
+        <optgroup label="Styles Artistiques">
+            <option value="oilpaint">Peinture</option>
+            <option value="watercolor">Aquarelle</option>
+            <option value="halftone">Trame</option>
+            <option value="posterize">Posteriser</option>
+        </optgroup>
+        <optgroup label="Dessin &amp; Croquis">
+            <option value="sketch">Dessin</option>
+            <option value="charcoal">Fusain</option>
+            <option value="edge">Contour</option>
+            <option value="engraving">Gravure</option>
+            <option value="oldphoto">Vieille Photo</option>
+        </optgroup>
+        <optgroup label="Masquage &amp; Couleur">
+            <option value="blackout">Masquer</option>
+            <option value="sepia">Sépia</option>
+            <option value="grayscale">N&amp;B</option>
+            <option value="invert">Inverser</option>
+        </optgroup>
+    </select><div id="blur-slider-container"><input id="blur-slider" type="range" step="1" min="2" max="8" title="Intensité : 3"></div></div></div><div id="my-timer-app-wrapper">
+    <div id="my-timer-container" class="draggable minimal-view" style="inset: -1px auto auto 449px;">
+        <div id="my-timer-display" class="drag-handle">00:43:56</div>
+        <div id="my-timer-controls">
+            <button id="start-timer-btn" title="Démarrer" disabled="">▶</button>
+            <button id="stop-timer-btn" title="Arrêter">❚❚</button>
+            <button id="reset-timer-btn" title="Réinitialiser">↻</button>
+            <button id="settings-btn" title="Réglages" disabled="">⚙️</button>
+            <button id="toggle-view-btn" title="Agrandir">+</button>
+        </div>
+    </div>
+    <div id="my-settings-panel" class="draggable" style="display: none; inset: 33px auto auto 219px;">
+        <div class="panel-header drag-handle"><h3>Réglages du Timer</h3></div>
+        <div class="panel-content">
+            <div id="program-management">
+                <label for="program-select">Programme :</label>
+                <select id="program-select" style="visibility: visible;"></select>
+                <button id="save-program-btn" title="Enregistrer sous... (créer/copier un programme)">💾</button>
+                <button id="delete-program-btn" title="Supprimer le programme sélectionné">🗑️</button>
+                <button id="export-program-btn" title="Exporter le programme">📤</button>
+                <button id="import-program-btn" title="Importer un programme">📥</button>
+            </div>
+            <hr>
+            <div class="setting-row"><label>Mode :</label><select id="timer-mode" style="visibility: visible;"><option value="up">Chronomètre</option><option value="down">Décompte</option></select></div>
+            <div class="setting-row"><label>Durée totale (min) :</label><input type="number" id="total-duration" min="1" value="25"></div>
+            <div class="setting-row"><label>Durée affichage alerte (sec) :</label><input type="number" id="alert-duration" min="1" value="5"></div>
+            <hr><h4>Alertes</h4><div id="alerts-list"></div><button id="add-alert-btn">+ Ajouter une alerte</button>
+            <hr><div class="settings-actions"><button id="apply-settings-btn">Appliquer &amp; Fermer</button><button id="cancel-settings-btn">Annuler</button></div>
+        </div>
+    </div>
+    <div id="my-template-modal" style="display: none;"><div class="modal-content"><span class="modal-close-btn">×</span><h4>Choisir un modèle de message</h4><div id="template-tabs"></div><div id="template-panels"></div></div></div></div><button class="appUI" style="position: absolute; padding: 30px 45px; font-size: 24px; background: rgb(0, 123, 255); color: rgb(255, 255, 255); border: none; border-radius: 10px; cursor: grab; z-index: 1000; box-shadow: rgba(0, 0, 0, 0.3) 4px 4px 15px; left: 446.792px; top: 279.594px;">📋 Copier Prompt IA</button><button class="appUI" style="position: absolute; padding: 10px; font-size: 18px; background: rgb(85, 85, 85); color: rgb(255, 255, 255); border: none; border-radius: 5px; cursor: grab; z-index: 1000; box-shadow: rgba(0, 0, 0, 0.3) 2px 2px 8px; left: 413px; top: 329.792px;">⚙️</button><div class="appUI" style="position: absolute; width: 280px; background: rgb(249, 249, 249); border: 1px solid rgb(204, 204, 204); border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.2) 2px 2px 10px; z-index: 1000; resize: both; overflow: auto; color: rgb(51, 51, 51); left: 0px; top: 47px; display: none;"><div style="cursor: move; background: rgb(0, 123, 255); color: rgb(255, 255, 255); padding: 5px; display: flex; justify-content: space-between; align-items: center;"><span style="font-size:18px; font-weight:bold;">Règles personnalisées</span><span style="cursor: pointer; font-size: 18px; margin-right: 5px;">✖</span></div><div style="display: flex; justify-content: space-between; align-items: center;"><button style="margin: 10px;">Fixer : Fermée</button><select style="margin: 10px; visibility: visible;"><option value="prompt1">Prompt 1</option><option value="prompt2">Prompt 2</option><option value="prompt3">Prompt 3</option></select></div><div style="padding: 10px; border-bottom: 1px solid rgb(204, 204, 204);"><label style="display: block; margin-bottom: 5px; color: rgb(51, 51, 51);">Règle ponctuelle (temporaire) :</label><textarea placeholder="Entrez la règle ponctuelle ici" style="width: 100%; min-height: 50px; resize: vertical;"></textarea></div><div style="padding: 10px; display: flex; flex-direction: column; max-height: 300px; overflow-y: auto;"><div draggable="true" data-rule-id="1" style="display: flex; align-items: center; justify-content: space-between; padding: 5px; margin-bottom: 8px; border: 1px solid rgb(204, 204, 204); border-radius: 4px; background-color: rgb(255, 255, 255); cursor: pointer; width: 280px; height: 40px; position: relative;"><input type="checkbox" style="margin-right: 5px;"><div style="flex-grow: 1; margin-right: 5px; padding: 5px; background-color: rgb(255, 193, 218); border-radius: 3px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Bisous</div><button style="font-size: 18px; background: transparent; border: none; cursor: pointer; padding: 0px 5px;">⋮</button></div><div draggable="true" data-rule-id="2" style="display: flex; align-items: center; justify-content: space-between; padding: 5px; margin-bottom: 8px; border: 1px solid rgb(204, 204, 204); border-radius: 4px; background-color: rgb(255, 255, 255); cursor: pointer; width: 280px; height: 40px; position: relative;"><input type="checkbox" style="margin-right: 5px;"><div style="flex-grow: 1; margin-right: 5px; padding: 5px; background-color: rgb(255, 144, 187); border-radius: 3px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Coquine</div><button style="font-size: 18px; background: transparent; border: none; cursor: pointer; padding: 0px 5px;">⋮</button></div><div draggable="true" data-rule-id="3" style="display: flex; align-items: center; justify-content: space-between; padding: 5px; margin-bottom: 8px; border: 1px solid rgb(204, 204, 204); border-radius: 4px; background-color: rgb(255, 255, 255); cursor: pointer; width: 280px; height: 40px; position: relative;"><input type="checkbox" style="margin-right: 5px;"><div style="flex-grow: 1; margin-right: 5px; padding: 5px; background-color: rgb(250, 246, 233); border-radius: 3px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Bien et toi</div><button style="font-size: 18px; background: transparent; border: none; cursor: pointer; padding: 0px 5px;">⋮</button></div><div draggable="true" data-rule-id="4" style="display: flex; align-items: center; justify-content: space-between; padding: 5px; margin-bottom: 8px; border: 1px solid rgb(204, 204, 204); border-radius: 4px; background-color: rgb(255, 255, 255); cursor: pointer; width: 280px; height: 40px; position: relative;"><input type="checkbox" style="margin-right: 5px;"><div style="flex-grow: 1; margin-right: 5px; padding: 5px; background-color: rgb(111, 230, 252); border-radius: 3px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Bonne nuit</div><button style="font-size: 18px; background: transparent; border: none; cursor: pointer; padding: 0px 5px;">⋮</button></div><div draggable="true" data-rule-id="5" style="display: flex; align-items: center; justify-content: space-between; padding: 5px; margin-bottom: 8px; border: 1px solid rgb(204, 204, 204); border-radius: 4px; background-color: rgb(255, 255, 255); cursor: pointer; width: 280px; height: 40px; position: relative;"><input type="checkbox" style="margin-right: 5px;"><div style="flex-grow: 1; margin-right: 5px; padding: 5px; background-color: rgb(158, 188, 138); border-radius: 3px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Journée bien passé</div><button style="font-size: 18px; background: transparent; border: none; cursor: pointer; padding: 0px 5px;">⋮</button></div><div draggable="true" data-rule-id="6" style="display: flex; align-items: center; justify-content: space-between; padding: 5px; margin-bottom: 8px; border: 1px solid rgb(204, 204, 204); border-radius: 4px; background-color: rgb(255, 255, 255); cursor: pointer; width: 280px; height: 40px; position: relative;"><input type="checkbox" style="margin-right: 5px;"><div style="flex-grow: 1; margin-right: 5px; padding: 5px; background-color: rgb(84, 119, 146); border-radius: 3px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Comment s'est passé sa journée<span style="background-color: yellow;">?</span></div><button style="font-size: 18px; background: transparent; border: none; cursor: pointer; padding: 0px 5px;">⋮</button></div><div draggable="true" data-rule-id="7" style="display: flex; align-items: center; justify-content: space-between; padding: 5px; margin-bottom: 8px; border: 1px solid rgb(204, 204, 204); border-radius: 4px; background-color: rgb(255, 255, 255); cursor: pointer; width: 280px; height: 40px; position: relative;"><input type="checkbox" style="margin-right: 5px;"><div style="flex-grow: 1; margin-right: 5px; padding: 5px; background-color: rgb(158, 188, 138); border-radius: 3px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Ce que je recherche ici</div><button style="font-size: 18px; background: transparent; border: none; cursor: pointer; padding: 0px 5px;">⋮</button></div><div draggable="true" data-rule-id="8" style="display: flex; align-items: center; justify-content: space-between; padding: 5px; margin-bottom: 8px; border: 1px solid rgb(204, 204, 204); border-radius: 4px; background-color: rgb(255, 255, 255); cursor: pointer; width: 280px; height: 40px; position: relative;"><input type="checkbox" style="margin-right: 5px;"><div style="flex-grow: 1; margin-right: 5px; padding: 5px; background-color: rgb(250, 213, 154); border-radius: 3px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Son métier<span style="background-color: yellow;">?</span></div><button style="font-size: 18px; background: transparent; border: none; cursor: pointer; padding: 0px 5px;">⋮</button></div><div draggable="true" data-rule-id="9" style="display: flex; align-items: center; justify-content: space-between; padding: 5px; margin-bottom: 8px; border: 1px solid rgb(204, 204, 204); border-radius: 4px; background-color: rgb(255, 255, 255); cursor: pointer; width: 280px; height: 40px; position: relative;"><input type="checkbox" style="margin-right: 5px;"><div style="flex-grow: 1; margin-right: 5px; padding: 5px; background-color: rgb(250, 213, 154); border-radius: 3px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Son prénom<span style="background-color: yellow;">?</span></div><button style="font-size: 18px; background: transparent; border: none; cursor: pointer; padding: 0px 5px;">⋮</button></div><div draggable="true" data-rule-id="10" style="display: flex; align-items: center; justify-content: space-between; padding: 5px; margin-bottom: 8px; border: 1px solid rgb(204, 204, 204); border-radius: 4px; background-color: rgb(255, 255, 255); cursor: pointer; width: 280px; height: 40px; position: relative;"><input type="checkbox" style="margin-right: 5px;"><div style="flex-grow: 1; margin-right: 5px; padding: 5px; background-color: rgb(250, 213, 154); border-radius: 3px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Ses passions<span style="background-color: yellow;">?</span></div><button style="font-size: 18px; background: transparent; border: none; cursor: pointer; padding: 0px 5px;">⋮</button></div><div draggable="true" data-rule-id="11" style="display: flex; align-items: center; justify-content: space-between; padding: 5px; margin-bottom: 8px; border: 1px solid rgb(204, 204, 204); border-radius: 4px; background-color: rgb(255, 255, 255); cursor: pointer; width: 280px; height: 40px; position: relative;"><input type="checkbox" style="margin-right: 5px;"><div style="flex-grow: 1; margin-right: 5px; padding: 5px; background-color: rgb(250, 213, 154); border-radius: 3px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Ses préférences sexuelles<span style="background-color: yellow;">?</span></div><button style="font-size: 18px; background: transparent; border: none; cursor: pointer; padding: 0px 5px;">⋮</button></div><div draggable="true" data-rule-id="12" style="display: flex; align-items: center; justify-content: space-between; padding: 5px; margin-bottom: 8px; border: 1px solid rgb(204, 204, 204); border-radius: 4px; background-color: rgb(255, 255, 255); cursor: pointer; width: 280px; height: 40px; position: relative;"><input type="checkbox" style="margin-right: 5px;"><div style="flex-grow: 1; margin-right: 5px; padding: 5px; background-color: rgb(151, 134, 106); border-radius: 3px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">RDV [pas le temps]</div><button style="font-size: 18px; background: transparent; border: none; cursor: pointer; padding: 0px 5px;">⋮</button></div><div draggable="true" data-rule-id="13" style="display: flex; align-items: center; justify-content: space-between; padding: 5px; margin-bottom: 8px; border: 1px solid rgb(204, 204, 204); border-radius: 4px; background-color: rgb(255, 255, 255); cursor: pointer; width: 280px; height: 40px; position: relative;"><input type="checkbox" style="margin-right: 5px;"><div style="flex-grow: 1; margin-right: 5px; padding: 5px; background-color: rgb(151, 134, 106); border-radius: 3px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">RDV [le connaitre avant]</div><button style="font-size: 18px; background: transparent; border: none; cursor: pointer; padding: 0px 5px;">⋮</button></div><div draggable="true" data-rule-id="14" style="display: flex; align-items: center; justify-content: space-between; padding: 5px; margin-bottom: 8px; border: 1px solid rgb(204, 204, 204); border-radius: 4px; background-color: rgb(255, 255, 255); cursor: pointer; width: 280px; height: 40px; position: relative;"><input type="checkbox" style="margin-right: 5px;"><div style="flex-grow: 1; margin-right: 5px; padding: 5px; background-color: rgb(233, 165, 241); border-radius: 3px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Gay</div><button style="font-size: 18px; background: transparent; border: none; cursor: pointer; padding: 0px 5px;">⋮</button></div><div draggable="true" data-rule-id="15" style="display: flex; align-items: center; justify-content: space-between; padding: 5px; margin-bottom: 8px; border: 1px solid rgb(204, 204, 204); border-radius: 4px; background-color: rgb(255, 255, 255); cursor: pointer; width: 280px; height: 40px; position: relative;"><input type="checkbox" style="margin-right: 5px;"><div style="flex-grow: 1; margin-right: 5px; padding: 5px; background-color: rgb(233, 165, 241); border-radius: 3px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Trans</div><button style="font-size: 18px; background: transparent; border: none; cursor: pointer; padding: 0px 5px;">⋮</button></div><div draggable="true" data-rule-id="16" style="display: flex; align-items: center; justify-content: space-between; padding: 5px; margin-bottom: 8px; border: 1px solid rgb(204, 204, 204); border-radius: 4px; background-color: rgb(255, 255, 255); cursor: pointer; width: 280px; height: 40px; position: relative;"><input type="checkbox" style="margin-right: 5px;"><div style="flex-grow: 1; margin-right: 5px; padding: 5px; background-color: rgb(162, 250, 157); border-radius: 3px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Connais son métier</div><button style="font-size: 18px; background: transparent; border: none; cursor: pointer; padding: 0px 5px;">⋮</button></div><div draggable="true" data-rule-id="17" style="display: flex; align-items: center; justify-content: space-between; padding: 5px; margin-bottom: 8px; border: 1px solid rgb(204, 204, 204); border-radius: 4px; background-color: rgb(255, 255, 255); cursor: pointer; width: 280px; height: 40px; position: relative;"><input type="checkbox" style="margin-right: 5px;"><div style="flex-grow: 1; margin-right: 5px; padding: 5px; background-color: rgb(238, 247, 183); border-radius: 3px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Dimanche</div><button style="font-size: 18px; background: transparent; border: none; cursor: pointer; padding: 0px 5px;">⋮</button></div><div draggable="true" data-rule-id="18" style="display: flex; align-items: center; justify-content: space-between; padding: 5px; margin-bottom: 8px; border: 1px solid rgb(204, 204, 204); border-radius: 4px; background-color: rgb(255, 255, 255); cursor: pointer; width: 280px; height: 40px; position: relative;"><input type="checkbox" style="margin-right: 5px;"><div style="flex-grow: 1; margin-right: 5px; padding: 5px; background-color: rgb(238, 247, 183); border-radius: 3px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Samedi repos</div><button style="font-size: 18px; background: transparent; border: none; cursor: pointer; padding: 0px 5px;">⋮</button></div><div draggable="true" data-rule-id="19" style="display: flex; align-items: center; justify-content: space-between; padding: 5px; margin-bottom: 8px; border: 1px solid rgb(204, 204, 204); border-radius: 4px; background-color: rgb(255, 255, 255); cursor: pointer; width: 280px; height: 40px; position: relative;"><input type="checkbox" style="margin-right: 5px;"><div style="flex-grow: 1; margin-right: 5px; padding: 5px; background-color: rgb(224, 224, 224); border-radius: 3px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Photo de [lui]</div><button style="font-size: 18px; background: transparent; border: none; cursor: pointer; padding: 0px 5px;">⋮</button></div><div draggable="true" data-rule-id="20" style="display: flex; align-items: center; justify-content: space-between; padding: 5px; margin-bottom: 8px; border: 1px solid rgb(204, 204, 204); border-radius: 4px; background-color: rgb(255, 255, 255); cursor: pointer; width: 280px; height: 40px; position: relative;"><input type="checkbox" style="margin-right: 5px;"><div style="flex-grow: 1; margin-right: 5px; padding: 5px; background-color: rgb(224, 224, 224); border-radius: 3px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Photo [lui tout nu]</div><button style="font-size: 18px; background: transparent; border: none; cursor: pointer; padding: 0px 5px;">⋮</button></div><div draggable="true" data-rule-id="21" style="display: flex; align-items: center; justify-content: space-between; padding: 5px; margin-bottom: 8px; border: 1px solid rgb(204, 204, 204); border-radius: 4px; background-color: rgb(255, 255, 255); cursor: pointer; width: 280px; height: 40px; position: relative;"><input type="checkbox" style="margin-right: 5px;"><div style="flex-grow: 1; margin-right: 5px; padding: 5px; background-color: rgb(224, 224, 224); border-radius: 3px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Photo de [son pénis]</div><button style="font-size: 18px; background: transparent; border: none; cursor: pointer; padding: 0px 5px;">⋮</button></div><div draggable="true" data-rule-id="22" style="display: flex; align-items: center; justify-content: space-between; padding: 5px; margin-bottom: 8px; border: 1px solid rgb(204, 204, 204); border-radius: 4px; background-color: rgb(255, 255, 255); cursor: pointer; width: 280px; height: 40px; position: relative;"><input type="checkbox" style="margin-right: 5px;"><div style="flex-grow: 1; margin-right: 5px; padding: 5px; background-color: rgb(224, 224, 224); border-radius: 3px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Photo de [son n° de tel]</div><button style="font-size: 18px; background: transparent; border: none; cursor: pointer; padding: 0px 5px;">⋮</button></div><div draggable="true" data-rule-id="23" style="display: flex; align-items: center; justify-content: space-between; padding: 5px; margin-bottom: 8px; border: 1px solid rgb(204, 204, 204); border-radius: 4px; background-color: rgb(255, 255, 255); cursor: pointer; width: 280px; height: 40px; position: relative;"><input type="checkbox" style="margin-right: 5px;"><div style="flex-grow: 1; margin-right: 5px; padding: 5px; background-color: rgb(248, 237, 140); border-radius: 3px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Dispo pour discuter</div><button style="font-size: 18px; background: transparent; border: none; cursor: pointer; padding: 0px 5px;">⋮</button></div><div draggable="true" data-rule-id="24" style="display: flex; align-items: center; justify-content: space-between; padding: 5px; margin-bottom: 8px; border: 1px solid rgb(204, 204, 204); border-radius: 4px; background-color: rgb(255, 255, 255); cursor: pointer; width: 280px; height: 40px; position: relative;"><input type="checkbox" style="margin-right: 5px;"><div style="flex-grow: 1; margin-right: 5px; padding: 5px; background-color: rgb(248, 237, 140); border-radius: 3px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Faire connaissance</div><button style="font-size: 18px; background: transparent; border: none; cursor: pointer; padding: 0px 5px;">⋮</button></div><div draggable="true" data-rule-id="25" style="display: flex; align-items: center; justify-content: space-between; padding: 5px; margin-bottom: 8px; border: 1px solid rgb(204, 204, 204); border-radius: 4px; background-color: rgb(255, 255, 255); cursor: pointer; width: 280px; height: 40px; position: relative;"><input type="checkbox" style="margin-right: 5px;"><div style="flex-grow: 1; margin-right: 5px; padding: 5px; background-color: rgb(248, 237, 140); border-radius: 3px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Demande sa photo</div><button style="font-size: 18px; background: transparent; border: none; cursor: pointer; padding: 0px 5px;">⋮</button></div><div draggable="true" data-rule-id="26" style="display: flex; align-items: center; justify-content: space-between; padding: 5px; margin-bottom: 8px; border: 1px solid rgb(204, 204, 204); border-radius: 4px; background-color: rgb(255, 255, 255); cursor: pointer; width: 280px; height: 40px; position: relative;"><input type="checkbox" style="margin-right: 5px;"><div style="flex-grow: 1; margin-right: 5px; padding: 5px; background-color: rgb(248, 237, 140); border-radius: 3px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Connaissance + Photo</div><button style="font-size: 18px; background: transparent; border: none; cursor: pointer; padding: 0px 5px;">⋮</button></div></div><button style="margin: 10px;">Ajouter une règle</button></div><div class="appUI" style="position: absolute; width: 400px; background: rgb(255, 255, 255); border: 1px solid rgb(204, 204, 204); border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.3) 2px 2px 10px; z-index: 2000; display: none;"><div style="cursor: move; background: rgb(0, 123, 255); color: rgb(255, 255, 255); padding: 5px; display: flex; justify-content: space-between; align-items: center;"><span style="font-size:18px; font-weight:bold;" id="editModalTitle">Modifier la règle</span><span style="cursor: pointer; font-size: 18px; margin-right: 5px;">✖</span></div><div style="padding: 10px;"><input type="text" placeholder="Titre de la règle" style="width: 100%; margin-bottom: 10px;"><textarea placeholder="Contenu de la règle" style="width: 100%; height: 100px; margin-bottom: 10px;"></textarea><label style="display: block; margin-bottom: 5px;">Couleur de la cellule :</label><input type="color" style="margin-bottom: 10px;"><label style="display: inline-block; margin-right: 10px;">Règle fixe (persistante) : <input type="checkbox"></label><br><button style="margin-right: 5px;">Sauvegarder</button><button>Annuler</button></div></div><div id="wc_task_count_div" class="wc_div_position_north wc_div_theme_dark" style="display: none;"><div id="wc_inner_div"><span class="wc_row_label">Words</span><span id="wc_word_count" class="wc_row_value">52</span><span class="wc_row_label">Characters</span><span id="wc_char_count" class="wc_row_value">293</span><span class="wc_row_label">Reading time</span><span id="wc_reading_time" class="wc_row_value">&lt;1 minute</span></div></div><script src="data:text/javascript;base64,Ly8gU2NyaXB0IHBvdXIgYWdyYW5kaXIgbGEgYm/udGUgZGUgdGV4dGUNCmxldCBib3ggPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKCcjbWVzc2FnZScpOw0KYm94LnN0eWxlLndpZHRoID0gJzYxMHB4JzsgDQpib3guc3R5bGUuaGVpZ2h0ID0gJzE2MHB4JzsNCmJveC5zdHlsZS5wb3NpdGlvbiA9ICdyZWxhdGl2ZSc7IC8vIENlbGEgcG91cnJhaXQgZOlq4CDqdHJlIGTpZmluaSwgbWFpcyBvbiBsZSByZWZhaXQgYXUgY2FzIG/5Lg0KYm94LnN0eWxlLmxlZnQgPSAnLTQzcHgnOyAvLyBE6XBsYWNlIGxhIGJv7nRlIGRlIDUwcHggdmVycyBsYSBnYXVjaGUuDQpib3guc3R5bGUudG9wID0gJy02MHB4JzsgLy8gROlwbGFjZSBsYSBib+50ZSBkZSA1MHB4IHZlcnMgbGUgaGF1dC4NCmJveC5zdHlsZS5tYXJnaW5Cb3R0b20gPSAnLTcwcHgnOyAvLyBS6WR1aXQgbCdlc3BhY2UgZW4gZGVzc291cyBkZSBsYSBib+50ZSBkZSB0ZXh0ZQ0KDQovLyBUcm91dmVyIGxhIHNlY3Rpb24gcXVpIGNvbnRpZW50IOAgbGEgZm9pcyBsYSBib+50ZSBkZSB0ZXh0ZSBldCBsZXMgYm91dG9ucyAiRW52b3llciIgZXQgIkVmZmFjZXIiDQp2YXIgc2VjdGlvbkFmaXhlciA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoJyNtZXNzYWdlX3NlbmRlciA+IGZvcm0nKTsNCg0KLy8gT2J0ZW5pciBsZXMgY29vcmRvbm7pZXMgZXQgZGltZW5zaW9ucyBhY3R1ZWxsZXMgZGUgbGEgc2VjdGlvbiDgIGZpeGVyDQp2YXIgcmVjdFNlY3Rpb25BZml4ZXIgPSBzZWN0aW9uQWZpeGVyLmdldEJvdW5kaW5nQ2xpZW50UmVjdCgpOw0KDQovLyBUcm91dmVyIGwn6WzpbWVudCBwYXJlbnQgZGUgbGEgc2VjdGlvbiDgIGZpeGVyIChwb3VyIHBvdXZvaXIgbGEgcmVtZXR0cmUgcGx1cyB0YXJkKQ0KdmFyIHBhcmVudE9yaWdpbmFsID0gc2VjdGlvbkFmaXhlci5wYXJlbnRFbGVtZW50Ow0KDQovLyBDcullciB1biBub3V2ZWF1IGNvbnRlbmV1ciA8ZGl2Pg0KdmFyIG5vdXZlYXVDb250ZW5ldXIgPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KCdkaXYnKTsNCm5vdXZlYXVDb250ZW5ldXIuaWQgPSAnbm91dmVhdS1jb250ZW5ldXInOw0KDQovLyBDcullciB1biDpbOltZW50IGVzcGFjZSBy6XNlcnbpIGF2ZWMgbGEgbeptZSBoYXV0ZXVyIHF1ZSBsYSBzZWN0aW9uIOAgZml4ZXINCnZhciBlc3BhY2VSZXNlcnZlID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgnZGl2Jyk7DQplc3BhY2VSZXNlcnZlLnN0eWxlLmhlaWdodCA9IHJlY3RTZWN0aW9uQWZpeGVyLmhlaWdodCArICdweCc7DQoNCi8vIEFwcGxpcXVlciBkZXMgc3R5bGVzIENTUyBhdSBub3V2ZWF1IGNvbnRlbmV1cg0Kbm91dmVhdUNvbnRlbmV1ci5zdHlsZS5wb3NpdGlvbiA9ICdmaXhlZCc7DQpub3V2ZWF1Q29udGVuZXVyLnN0eWxlLnRvcCA9IHJlY3RTZWN0aW9uQWZpeGVyLnRvcCArICdweCc7DQpub3V2ZWF1Q29udGVuZXVyLnN0eWxlLmxlZnQgPSByZWN0U2VjdGlvbkFmaXhlci5sZWZ0ICsgJ3B4JzsNCm5vdXZlYXVDb250ZW5ldXIuc3R5bGUud2lkdGggPSByZWN0U2VjdGlvbkFmaXhlci53aWR0aCArICdweCc7DQpub3V2ZWF1Q29udGVuZXVyLnN0eWxlLnpJbmRleCA9ICcxMDAwJzsNCm5vdXZlYXVDb250ZW5ldXIuc3R5bGUuYmFja2dyb3VuZENvbG9yID0gJyNmOGY5ZmEnOw0Kbm91dmVhdUNvbnRlbmV1ci5zdHlsZS5wYWRkaW5nID0gJzEwcHgnOw0Kbm91dmVhdUNvbnRlbmV1ci5zdHlsZS5ib3hTaGFkb3cgPSAnMHB4IC0ycHggNXB4IHJnYmEoMCwgMCwgMCwgMC4xKSc7DQoNCi8vIFRyb3V2ZXIgbGEgc2VjdGlvbiBkJ2hpc3RvcmlxdWUgZGUgY29udmVyc2F0aW9uDQp2YXIgc2VjdGlvbkhpc3RvcmlxdWUgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKCcjbWVzc2FnZV9zZW5kZXIgPiBkaXYnKTsNCg0KLy8gT2J0ZW5pciBsZXMgY29vcmRvbm7pZXMgZXQgZGltZW5zaW9ucyBkZSBsYSBzZWN0aW9uIGQnaGlzdG9yaXF1ZSBkZSBjb252ZXJzYXRpb24NCnZhciByZWN0U2VjdGlvbkhpc3RvcmlxdWUgPSBzZWN0aW9uSGlzdG9yaXF1ZS5nZXRCb3VuZGluZ0NsaWVudFJlY3QoKTsNCg0KLy8gRm9uY3Rpb24gcG91ciBn6XJlciBsJ+l26W5lbWVudCBkZSBk6WZpbGVtZW50DQpmdW5jdGlvbiBoYW5kbGVTY3JvbGwoKSB7DQogICAgdmFyIHNjcm9sbFRvcCA9IHdpbmRvdy5wYWdlWU9mZnNldCB8fCBkb2N1bWVudC5kb2N1bWVudEVsZW1lbnQuc2Nyb2xsVG9wOw0KICAgIHZhciBvZmZzZXQgPSAzMDA7ICANCiAgICBpZiAoc2Nyb2xsVG9wID49IHJlY3RTZWN0aW9uSGlzdG9yaXF1ZS50b3AgLSByZWN0U2VjdGlvbkFmaXhlci5oZWlnaHQgLSBvZmZzZXQgJiYgc2Nyb2xsVG9wIDwgcmVjdFNlY3Rpb25IaXN0b3JpcXVlLmJvdHRvbSAtIG9mZnNldCkgew0KICAgICAgICAvLyBSZW1ldHRyZSBsYSBzZWN0aW9uIOAgZml4ZXIg4CBzb24gZW1wbGFjZW1lbnQgZCdvcmlnaW5lIGV0IHN1cHByaW1lciBsJ2VzcGFjZSBy6XNlcnbpDQogICAgICAgIGlmIChub3V2ZWF1Q29udGVuZXVyLmNvbnRhaW5zKHNlY3Rpb25BZml4ZXIpKSB7DQogICAgICAgICAgICBwYXJlbnRPcmlnaW5hbC5pbnNlcnRCZWZvcmUoc2VjdGlvbkFmaXhlciwgZXNwYWNlUmVzZXJ2ZSk7DQogICAgICAgICAgICBwYXJlbnRPcmlnaW5hbC5yZW1vdmVDaGlsZChlc3BhY2VSZXNlcnZlKTsNCiAgICAgICAgfQ0KICAgICAgICBub3V2ZWF1Q29udGVuZXVyLnN0eWxlLnZpc2liaWxpdHkgPSAnaGlkZGVuJzsNCiAgICB9IGVsc2Ugew0KICAgICAgICAvLyBE6XBsYWNlciBsYSBzZWN0aW9uIOAgZml4ZXIgZGFucyBsZSBub3V2ZWF1IGNvbnRlbmV1ciBldCBpbnPpcmVyIGwnZXNwYWNlIHLpc2Vydukg4CBzb24gZW1wbGFjZW1lbnQgZCdvcmlnaW5lDQogICAgICAgIGlmICghbm91dmVhdUNvbnRlbmV1ci5jb250YWlucyhzZWN0aW9uQWZpeGVyKSkgew0KICAgICAgICAgICAgcGFyZW50T3JpZ2luYWwuaW5zZXJ0QmVmb3JlKGVzcGFjZVJlc2VydmUsIHNlY3Rpb25BZml4ZXIpOw0KICAgICAgICAgICAgbm91dmVhdUNvbnRlbmV1ci5hcHBlbmRDaGlsZChzZWN0aW9uQWZpeGVyKTsNCiAgICAgICAgfQ0KICAgICAgICBub3V2ZWF1Q29udGVuZXVyLnN0eWxlLnZpc2liaWxpdHkgPSAndmlzaWJsZSc7DQogICAgfQ0KfQ0KDQovLyBBam91dGVyIGxlIG5vdXZlYXUgY29udGVuZXVyIOAgbGEgcGFnZQ0KZG9jdW1lbnQuYm9keS5hcHBlbmRDaGlsZChub3V2ZWF1Q29udGVuZXVyKTsNCg0KLy8gQWpvdXRlciB1biDpY291dGV1ciBkJ+l26W5lbWVudCBkZSBk6WZpbGVtZW50DQp3aW5kb3cuYWRkRXZlbnRMaXN0ZW5lcignc2Nyb2xsJywgaGFuZGxlU2Nyb2xsKTsNCg0KDQovLyBSYWZmcmFpY2hpc3NlbWVudCBhdXRvbWF0aXF1ZSBkZSBsYSBwYWdlDQooZnVuY3Rpb24oKSB7DQogICAgdmFyIHJlZnJlc2hJbnRlcnZhbElkOw0KICAgIGRvY3VtZW50LmFkZEV2ZW50TGlzdGVuZXIoJ2tleWRvd24nLCBmdW5jdGlvbihlKSB7DQogICAgICAgIGlmIChlLmNvZGUgPT09ICdLZXlSJyAmJiBlLmN0cmxLZXkgJiYgZS5zaGlmdEtleSkgew0KICAgICAgICAgICAgaWYgKHJlZnJlc2hJbnRlcnZhbElkKSB7DQogICAgICAgICAgICAgICAgY2xlYXJJbnRlcnZhbChyZWZyZXNoSW50ZXJ2YWxJZCk7DQogICAgICAgICAgICAgICAgcmVmcmVzaEludGVydmFsSWQgPSBudWxsOw0KICAgICAgICAgICAgICAgIGNvbnNvbGUubG9nKCdBdXRvLXJlZnJlc2ggZOlzYWN0aXbpJyk7DQogICAgICAgICAgICB9IGVsc2Ugew0KICAgICAgICAgICAgICAgIGNvbnNvbGUubG9nKCdBdXRvLXJlZnJlc2ggYWN0aXbpJyk7DQogICAgICAgICAgICAgICAgcmVmcmVzaEludGVydmFsSWQgPSBzZXRJbnRlcnZhbChmdW5jdGlvbigpIHsgbG9jYXRpb24ucmVsb2FkKCk7IH0sIDEwMDApOw0KICAgICAgICAgICAgfQ0KICAgICAgICAgICAgZS5wcmV2ZW50RGVmYXVsdCgpOw0KICAgICAgICAgICAgcmV0dXJuIGZhbHNlOw0KICAgICAgICB9DQogICAgfSk7DQp9KSgpOw0KDQovLyBT6WxlY3RldXIgcG91ciBsZSBwcmVtaWVyIOls6W1lbnQgdGV4dGUNCnZhciBzZWxlY3RvcjEgPSAiYm9keSA+IGRpdi5jb250YWluZXIgPiBkaXYucm93ID4gZGl2Om50aC1jaGlsZCgxKSA+IGRpdjpudGgtY2hpbGQoMikgPiBkaXYucGFuZWwtYm9keSA+IGRpdjpudGgtY2hpbGQoMTApIjsNCg0KLy8gU+lsZWN0ZXVyIHBvdXIgbGUgZGV1eGnobWUg6WzpbWVudCB0ZXh0ZQ0KdmFyIHNlbGVjdG9yMiA9ICJib2R5ID4gZGl2LmNvbnRhaW5lciA+IGRpdi5yb3cgPiBkaXY6bnRoLWNoaWxkKDMpID4gZGl2Om50aC1jaGlsZCgxKSA+IGRpdi5wYW5lbC1ib2R5ID4gZGl2Om50aC1jaGlsZCgxMSkiOw0KDQovLyBT6WxlY3RldXIgcG91ciBsZSB0cm9pc2nobWUg6WzpbWVudCB0ZXh0ZQ0KdmFyIHNlbGVjdG9yMyA9ICJib2R5ID4gZGl2LmNvbnRhaW5lciA+IGRpdi5yb3cgPiBkaXY6bnRoLWNoaWxkKDEpID4gZGl2Om50aC1jaGlsZCgyKSA+IGRpdi5wYW5lbC1ib2R5ID4gZGl2Om50aC1jaGlsZCg4KSA+IGRpdjpudGgtY2hpbGQoMikiOw0KDQovLyBT6WxlY3RldXIgcG91ciBsZSBxdWF0cmnobWUg6WzpbWVudCB0ZXh0ZQ0KdmFyIHNlbGVjdG9yNCA9ICJib2R5ID4gZGl2LmNvbnRhaW5lciA+IGRpdi5yb3cgPiBkaXY6bnRoLWNoaWxkKDMpID4gZGl2Om50aC1jaGlsZCgxKSA+IGRpdi5wYW5lbC1ib2R5ID4gZGl2Om50aC1jaGlsZCg4KSA+IGRpdjpudGgtY2hpbGQoMikiOw0KDQovLyBGb25jdGlvbiBwb3VyIHN1cmxpZ25lciBlbiBqYXVuZSB1biDpbOltZW50DQpmdW5jdGlvbiBoaWdobGlnaHRFbGVtZW50KHNlbGVjdG9yKSB7DQogICAgdmFyIGVsZW1lbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKHNlbGVjdG9yKTsNCiAgICBpZiAoZWxlbWVudCkgew0KICAgICAgICBlbGVtZW50LnN0eWxlLmJhY2tncm91bmRDb2xvciA9ICJ5ZWxsb3ciOw0KICAgIH0NCn0NCg0KLy8gQXBwZWwgZGUgbGEgZm9uY3Rpb24gcG91ciBjaGFxdWUg6WzpbWVudCB0ZXh0ZQ0KaGlnaGxpZ2h0RWxlbWVudChzZWxlY3RvcjEpOw0KaGlnaGxpZ2h0RWxlbWVudChzZWxlY3RvcjIpOw0KaGlnaGxpZ2h0RWxlbWVudChzZWxlY3RvcjMpOw0KaGlnaGxpZ2h0RWxlbWVudChzZWxlY3RvcjQpOw0KDQovLyBT6WxlY3Rpb24gZGUgbGEgem9uZSBkZSB0ZXh0ZQ0KdmFyIHRleHRBcmVhID0gZG9jdW1lbnQucXVlcnlTZWxlY3RvcignI21lc3NhZ2Vfc2VuZGVyID4gZGl2Jyk7DQoNCi8vIEZvbmN0aW9uIHBvdXIgYXVnbWVudGVyIGxhIHRhaWxsZSBkdSB0ZXh0ZQ0KZnVuY3Rpb24gYXVnbWVudGVyVGFpbGxlVGV4dGUoKSB7DQogICAgLy8gTW9kaWZpZXIgbGEgdGFpbGxlIGR1IHRleHRlDQogICAgdGV4dEFyZWEuc3R5bGUuZm9udFNpemUgPSAnMTRweCc7IC8vIFJlbXBsYWNleiAnMTZweCcgcGFyIGxhIHRhaWxsZSBkZSB0ZXh0ZSBzb3VoYWl06WUNCn0NCg0KLy8gQXBwZWwgZGUgbGEgZm9uY3Rpb24gcG91ciBhdWdtZW50ZXIgbGEgdGFpbGxlIGR1IHRleHRlDQphdWdtZW50ZXJUYWlsbGVUZXh0ZSgpOw0KDQoNCg0KDQo="></script><div id="nouveau-conteneur" style="position: fixed; top: 157px; left: 370.5px; width: 523.667px; z-index: 1000; background-color: rgb(248, 249, 250); padding: 10px; box-shadow: rgba(0, 0, 0, 0.1) 0px -2px 5px; visibility: hidden;"></div><img src="chrome-extension://pbhpcbdjngblklnibanbkgkogjmbjeoe/src/public/images/128px.png" id="image-hover-icon" style="position: absolute; width: 25px; height: 25px; cursor: pointer; left: 39.6667px; top: 263.667px; display: block; opacity: 0.7;"></body><script id="custom-script-code-0" type="text/javascript">
+// Mettre un fond jaune sur les points d'interrogation et les mots "tu"
+document.querySelectorAll('body *').forEach(function(element) {
+    if (element.childNodes.length === 1 && element.nodeType === Node.ELEMENT_NODE) {
+        var text = element.textContent || element.innerText;
+        if (text && (text.includes('?') || text.match(/\btu\b/i))) {
+            element.innerHTML = element.innerHTML
+                .replace(/\?/g, '<span style="background-color: yellow;">?</span>')
+                .replace(/\b(tu)\b/gi, '<span style="background-color: yellow;">$1</span>');
+        }
+    }
+});
+</script></html>
